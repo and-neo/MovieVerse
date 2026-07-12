@@ -1,0 +1,26 @@
+/* Navbar styles */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 2rem;
+
+    background-color: var(--secondary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
