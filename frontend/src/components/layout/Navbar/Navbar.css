@@ -1,26 +1,42 @@
 /* Navbar styles */
 
-nav {
+.navbar {
+    background-color: var(--secondary-color);
+    padding: 1rem 2rem;
+}
+
+.navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 1rem 2rem;
-
-    background-color: var(--secondary-color);
 }
 
-nav ul {
+.navbar-logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.navbar-links,
+.navbar-auth {
     display: flex;
-    list-style: none;
+    align-items: center;
     gap: 2rem;
 }
 
-nav a {
+.nav-link {
     color: white;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-nav a:hover {
+.nav-link:hover {
     color: var(--primary-color);
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: 600;
 }

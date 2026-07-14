@@ -1,0 +1,23 @@
+/* Sections */
+
+.section {
+    margin-bottom: 4rem;
+}
+
+/* Titles */
+
+.section-title {
+    margin-bottom: 2rem;
+
+    font-size: 2rem;
+}
+
+/* Grid */
+
+.movies-grid {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 2rem;
+}

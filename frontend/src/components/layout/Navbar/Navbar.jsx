@@ -1,41 +1,49 @@
-/**
- * Navbar component.
- *
- * Displays the main navigation of the application.
- */
+import { NavLink, Link } from "react-router-dom";
+import { navigation } from "../../../constants/navigation";
 
-import { Link } from "react-router-dom";
 import "./Navbar.css";
+
+/**
+ * Main navigation bar displayed across the application.
+ * Provides quick access to the primary pages.
+ */
 
 function Navbar() {
     return (
-        <nav>
-            <div className="logo">
-                <Link to="/">MovieVerse</Link>
+        <header className="navbar">
+            <div className="container navbar-container">
+                {/* Logo */}
+                <div className="navbar-logo">
+                    <Link to="/">🎬 MovieVerse</Link>
+                </div>
+
+                {/* Main Navigation */}
+                <nav className="navbar-links">
+                    {navigation.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            className={({ isActive }) =>
+                                isActive ? "nav-link active" : "nav-link"
+                            }
+                        >
+                            {item.name}
+                        </NavLink>
+                    ))}
+                </nav>
+
+                {/* Authentication */}
+                <div className="navbar-auth">
+                    <NavLink to="/login" className="nav-link">
+                        Login
+                    </NavLink>
+
+                    <NavLink to="/register" className="nav-link">
+                        Register
+                    </NavLink>
+                </div>
             </div>
-
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-
-                <li>
-                    <Link to="/movies">Movies</Link>
-                </li>
-
-                <li>
-                    <Link to="/tvshows">TV Shows</Link>
-                </li>
-
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-            </ul>
-
-            <div className="auth-links">
-                <Link to="/login">Login</Link>
-            </div>
-        </nav>
+        </header>
     );
 }
 

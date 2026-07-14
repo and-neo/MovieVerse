@@ -1,1 +1,42 @@
 /* MovieCard styles */
+
+.movie-card {
+    background-color: var(--card-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+
+    transition:
+        transform var(--transition-speed),
+        box-shadow var(--transition-speed);
+}
+
+.movie-card:hover {
+    transform: translateY(-6px);
+}
+
+.movie-card-image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.movie-card-content {
+    padding: 1rem;
+}
+
+.movie-card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-card-rating {
+    color: gold;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.movie-card-meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
