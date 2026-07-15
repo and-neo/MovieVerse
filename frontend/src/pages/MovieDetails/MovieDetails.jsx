@@ -1,13 +1,22 @@
-/**
- * MovieDetails page of the application.
- */
-
 import "./MovieDetails.css";
 
+import MediaHero from "../../components/mediaHero/MediaHero";
+import MediaOverview from "../../components/mediaOverview/MediaOverview";
+
+import movies from "../../data/movies";
+
+/**
+ * Displays the details of a selected movie.
+ * Currently uses dummy data.
+ */
+
 function MovieDetails() {
+    const movie = movies[0];
+
     return (
         <main>
-            <h1>MovieDetails</h1>
+            <MediaHero item={movie} />
+            <MediaOverview overview={movie.overview} />
         </main>
     );
 }

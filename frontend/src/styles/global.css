@@ -9,8 +9,8 @@
 /* Elements */
 
 img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
 }
 
 a {
@@ -39,23 +39,57 @@ body {
 /* Root Variables */
 
 :root {
+    /* Colors */
+
     --primary-color: #2563eb;
     --secondary-color: #1f2937;
     --background-color: #111827;
     --card-color: #1e293b;
+
     --text-color: #ffffff;
     --text-secondary: #9ca3af;
 
     /* Design System */
 
     --border-radius: 12px;
-    --transition-speed: 0.3s;
+
     --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    --transition-speed: 0.3s ease;
+
+    --max-width: 1200px;
+
+    /* Spacing */
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
 }
 
 /* Layout */
 
 .container {
-    width: min(1200px, 90%);
+    width: min(var(--max-width), 90%);
     margin: 0 auto;
+}
+
+/* Components */
+
+.btn {
+    display: inline-block;
+
+    padding: 0.8rem 1.5rem;
+
+    border-radius: var(--border-radius);
+
+    background-color: var(--primary-color);
+    color: var(--text-color);
+
+    transition: var(--transition-speed);
+}
+
+.btn:hover {
+    opacity: 0.9;
 }

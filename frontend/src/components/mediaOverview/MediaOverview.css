@@ -1,0 +1,19 @@
+/* MediaOverview styles */
+
+.media-overview-section {
+    padding-bottom: 3rem;
+}
+
+.media-overview-title {
+    font-size: 1.8rem;
+
+    margin-bottom: 1rem;
+}
+
+.media-overview-text {
+    max-width: 850px;
+
+    color: var(--text-secondary);
+
+    line-height: 1.8;
+}

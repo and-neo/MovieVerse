@@ -3,9 +3,9 @@ import "../../styles/utilities.css";
 
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
-import MovieCard from "../../components/movie/movieCard/MovieCard";
+import MediaGrid from "../../components/mediaGrid/MediaGrid";
 
-import dummyMovies from "../../data/dummyMovies";
+import movies from "../../data/movies";
 
 /**
  * Home page of the application.
@@ -22,11 +22,7 @@ function HomePage() {
                 <div className="container">
                     <h2 className="section-title">Trending This Week</h2>
 
-                    <div className="movies-grid">
-                        {dummyMovies.map((movie) => (
-                            <MovieCard key={movie.id} movie={movie} />
-                        ))}
-                    </div>
+                    <MediaGrid items={movies} />
                 </div>
             </section>
         </main>

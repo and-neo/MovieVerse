@@ -3,7 +3,7 @@
  * These objects will later be replaced with data fetched from the TMDb API.
  */
 
-const dummyTVShows = [
+const tvShows = [
     {
         id: 1,
         title: "Breaking Bad",
@@ -54,4 +54,4 @@ const dummyTVShows = [
     },
 ];
 
-export default dummyTVShows;
+export default tvShows;

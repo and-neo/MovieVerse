@@ -1,23 +1,13 @@
 /* Sections */
 
 .section {
-    margin-bottom: 4rem;
+    margin-bottom: var(--spacing-lg);
 }
 
 /* Titles */
 
 .section-title {
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-md);
 
     font-size: 2rem;
-}
-
-/* Grid */
-
-.movies-grid {
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-
-    gap: 2rem;
 }

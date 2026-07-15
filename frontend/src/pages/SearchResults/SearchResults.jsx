@@ -1,26 +1,27 @@
-import "./TVShows.css";
+import "./SearchResults.css";
 
 import PageHeader from "../../components/pageHeader/PageHeader";
 import MediaGrid from "../../components/mediaGrid/MediaGrid";
 import Pagination from "../../components/pagination/Pagination";
 
-import tvShows from "../../data/tvShows";
+import movies from "../../data/movies";
 
 /**
- * Displays the TV Shows page.
+ * Displays search results.
+ * Currently uses dummy data.
  */
 
-function TVShows() {
+function SearchResults() {
     return (
         <main>
             <PageHeader
-                title="TV Shows"
-                description="Discover popular television series from around the world."
+                title="Search Results"
+                description="Showing matching movies and TV shows."
             />
 
             <section className="section">
                 <div className="container">
-                    <MediaGrid items={tvShows} />
+                    <MediaGrid items={movies} />
 
                     <Pagination />
                 </div>
@@ -29,4 +30,4 @@ function TVShows() {
     );
 }
 
-export default TVShows;
+export default SearchResults;

@@ -16,6 +16,7 @@ import TVShowDetails from "../pages/TVShowDetails/TVShowDetails";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
+import SearchResults from "../pages/SearchResults/SearchResults";
 
 function AppRouter() {
     return (
@@ -30,6 +31,7 @@ function AppRouter() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/search" element={<SearchResults />} />
                 </Route>
             </Routes>
         </BrowserRouter>

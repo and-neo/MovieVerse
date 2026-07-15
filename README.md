@@ -52,6 +52,35 @@ Data Layer
 - [ ] Backend implementation
 - [ ] API integration
 
+## Completed Sprints
+
+### Sprint 1
+
+- Project setup
+- React Router
+- Main Layout
+- Navbar
+- Footer
+
+### Sprint 2
+
+- Homepage
+- Hero
+- Search Bar
+- Trending section
+- Responsive layout
+
+### Sprint 3
+
+- Media pages
+- Search Results
+- Reusable MediaCard
+- MediaGrid
+- MediaHero
+- MediaOverview
+- Movie Details
+- TV Show Details
+
 ---
 
 ## Project Status
