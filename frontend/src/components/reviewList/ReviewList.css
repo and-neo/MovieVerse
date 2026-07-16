@@ -1,0 +1,6 @@
+/* ReviewList styles */
+
+.reviews-list {
+    display: grid;
+    gap: var(--spacing-sm);
+}

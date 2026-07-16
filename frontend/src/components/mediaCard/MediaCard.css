@@ -5,6 +5,10 @@
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
 
     transition:
         transform var(--transition-speed),
@@ -22,12 +26,21 @@
 }
 
 .media-card-content {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
     padding: 1rem;
 }
 
 .media-card-title {
+    min-height: 3.5rem;
+
+    margin-bottom: 0.6rem;
+
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
 .media-card-rating {
@@ -39,4 +52,5 @@
 .media-card-meta {
     color: var(--text-secondary);
     font-size: 0.9rem;
+    margin-top: auto;
 }

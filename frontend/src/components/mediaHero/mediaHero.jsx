@@ -1,29 +1,62 @@
 import "./MediaHero.css";
 
 /**
- * Hero section displayed on the Movie and TV Shows details pages..
+ * Displays the main information of a movie or TV show.
  */
 
 function MediaHero({ item }) {
+    const releaseYear = new Date(item.releaseDate).getFullYear();
+
     return (
-        <section className="media-hero">
+        <section
+            className="media-hero"
+            style={{
+                "--backdrop-image": `url(${item.backdrop})`,
+            }}
+        >
             <div className="container media-hero-content">
                 <img
                     src={item.poster}
-                    alt={item.title}
+                    alt={`${item.title} poster`}
                     className="media-poster"
                 />
 
                 <div className="media-info">
-                    <h1>{item.title}</h1>
+                    <h1 className="media-title">{item.title}</h1>
 
-                    <p className="media-rating">⭐ {item.rating}</p>
+                    {item.tagline && (
+                        <p className="media-tagline">{item.tagline}</p>
+                    )}
 
-                    <p className="media-meta">
-                        {item.genre} • {item.year}
-                    </p>
+                    <div className="media-genres">
+                        {item.genres.map((genre) => (
+                            <span key={genre} className="media-genre">
+                                {genre}
+                            </span>
+                        ))}
+                    </div>
 
-                    <p className="media-overview">{item.overview}</p>
+                    <div className="media-details">
+                        <span>⭐ {item.voteAverage.toFixed(1)}</span>
+                        <span>{item.voteCount.toLocaleString()} votes</span>
+                        <span>{releaseYear}</span>
+
+                        {item.runtime && <span>{item.runtime} min</span>}
+
+                        {item.seasons && (
+                            <span>
+                                {item.seasons}{" "}
+                                {item.seasons === 1 ? "Season" : "Seasons"}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="media-secondary-details">
+                        <span>Status: {item.status}</span>
+                        <span>
+                            Language: {item.originalLanguage.toUpperCase()}
+                        </span>
+                    </div>
                 </div>
             </div>
         </section>

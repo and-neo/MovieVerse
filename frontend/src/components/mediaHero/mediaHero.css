@@ -1,17 +1,27 @@
 /* MediaHero styles */
 
 .media-hero {
-    padding: 3rem 0;
+    padding: var(--spacing-lg) 0;
+
+    background-image:
+        linear-gradient(rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.95)),
+        var(--backdrop-image);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .media-hero-content {
     display: flex;
-    gap: 2rem;
     align-items: flex-start;
+    gap: var(--spacing-md);
 }
 
 .media-poster {
     width: 300px;
+    aspect-ratio: 2 / 3;
+
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 
@@ -20,44 +30,78 @@
 
 .media-info {
     flex: 1;
+    padding-top: var(--spacing-sm);
 }
 
-.media-info h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.media-title {
+    margin-bottom: var(--spacing-xs);
+
+    font-size: 2.75rem;
+    line-height: 1.2;
 }
 
-.media-rating {
-    color: gold;
-    font-size: 1.1rem;
-    font-weight: 600;
+.media-tagline {
+    margin-bottom: var(--spacing-md);
 
-    margin-bottom: 0.75rem;
-}
-
-.media-meta {
     color: var(--text-secondary);
-
-    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-style: italic;
 }
 
-.media-overview {
-    line-height: 1.8;
-    color: var(--text-color);
+.media-genres,
+.media-details,
+.media-secondary-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.media-genres {
+    margin-bottom: var(--spacing-md);
+}
+
+.media-genre {
+    padding: 0.4rem 0.8rem;
+
+    border-radius: var(--border-radius);
+
+    background-color: var(--card-color);
+    font-size: 0.9rem;
+}
+
+.media-details {
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.media-secondary-details {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
     .media-hero-content {
         flex-direction: column;
         align-items: center;
-        text-align: center;
     }
 
     .media-poster {
         width: 240px;
     }
 
-    .media-info h1 {
+    .media-info {
+        padding-top: 0;
+        text-align: center;
+    }
+
+    .media-title {
         font-size: 2rem;
+    }
+
+    .media-genres,
+    .media-details,
+    .media-secondary-details {
+        justify-content: center;
     }
 }

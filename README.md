@@ -81,6 +81,18 @@ Data Layer
 - Movie Details
 - TV Show Details
 
+## Sprint 4 – Media Details
+
+- Dynamic Movie Details and TV Show Details pages
+- React Router dynamic routes (`useParams`)
+- MediaHero with backdrop, metadata and poster
+- MediaOverview section
+- Cast section
+- Reviews section
+- Similar titles section
+- Scroll restoration between detail pages
+- Enhanced mock data based on TMDb structure
+
 ---
 
 ## Project Status

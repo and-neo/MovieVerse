@@ -1,0 +1,33 @@
+/* ReviewCard styles */
+
+.review-card {
+    padding: var(--spacing-md);
+
+    border-radius: var(--border-radius);
+
+    background-color: var(--card-color);
+    box-shadow: var(--box-shadow);
+}
+
+.review-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    margin-bottom: var(--spacing-sm);
+}
+
+.review-author {
+    font-size: 1.1rem;
+}
+
+.review-rating {
+    color: gold;
+    font-weight: 600;
+}
+
+.review-comment {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}

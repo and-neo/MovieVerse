@@ -1,0 +1,32 @@
+/* CastCard styles */
+
+.cast-card {
+    overflow: hidden;
+
+    border-radius: var(--border-radius);
+
+    background-color: var(--card-color);
+    box-shadow: var(--box-shadow);
+}
+
+.cast-card-image {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+
+    object-fit: cover;
+}
+
+.cast-card-content {
+    padding: var(--spacing-sm);
+}
+
+.cast-card-name {
+    margin-bottom: 0.25rem;
+
+    font-size: 1rem;
+}
+
+.cast-card-character {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
