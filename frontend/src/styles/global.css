@@ -49,6 +49,9 @@ body {
     --text-color: #ffffff;
     --text-secondary: #9ca3af;
 
+    --error-color: #ef4444;
+    --border-color: #333333;
+
     /* Design System */
 
     --border-radius: 12px;

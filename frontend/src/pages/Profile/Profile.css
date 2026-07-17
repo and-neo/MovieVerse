@@ -1,1 +1,19 @@
 /* Profile page styles */
+
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+
+    width: min(100% - 2rem, 900px);
+
+    margin: 0 auto;
+    padding-block: var(--spacing-xl);
+}
+
+@media (max-width: 600px) {
+    .profile-page {
+        width: min(100% - 1rem, 900px);
+        padding-block: var(--spacing-lg);
+    }
+}

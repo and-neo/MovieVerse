@@ -1,9 +1,9 @@
 import "./Home.css";
 import "../../styles/utilities.css";
 
-import Hero from "../../components/hero/Hero";
-import SearchBar from "../../components/searchBar/SearchBar";
-import MediaGrid from "../../components/mediaGrid/MediaGrid";
+import Hero from "../../components/home/hero/Hero";
+import SearchBar from "../../components/common/searchBar/SearchBar";
+import MediaGrid from "../../components/media/mediaGrid/MediaGrid";
 
 import movies from "../../data/movies";
 

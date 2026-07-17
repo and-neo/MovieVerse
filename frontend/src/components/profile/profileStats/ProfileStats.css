@@ -1,0 +1,46 @@
+/* ProfileStats styles */
+
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.profile-stats-title {
+    font-size: 1.4rem;
+}
+
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+}
+
+.profile-stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+
+    padding: var(--spacing-sm);
+
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+}
+
+.profile-stat-value {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.profile-stat-label {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+@media (max-width: 500px) {
+    .profile-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

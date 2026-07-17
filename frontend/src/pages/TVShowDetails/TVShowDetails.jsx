@@ -3,11 +3,11 @@ import "./TVShowDetails.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import MediaHero from "../../components/mediaHero/MediaHero";
-import MediaOverview from "../../components/mediaOverview/MediaOverview";
-import CastList from "../../components/castList/CastList";
-import ReviewList from "../../components/reviewList/ReviewList";
-import SimilarMedia from "../../components/similarMedia/SimilarMedia";
+import MediaHero from "../../components/media/mediaHero/MediaHero";
+import MediaOverview from "../../components/media/mediaOverview/MediaOverview";
+import CastList from "../../components/cast/castList/CastList";
+import ReviewList from "../../components/review/reviewList/ReviewList";
+import SimilarMedia from "../../components/media/similarMedia/SimilarMedia";
 
 import tvShows from "../../data/tvShows";
 

@@ -1,1 +1,45 @@
-/* SearchBar styles */
+/* Search Bar */
+
+.search-section {
+    margin-bottom: 4rem;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--card-color);
+
+    border-radius: var(--border-radius);
+
+    overflow: hidden;
+}
+
+.search-form input {
+    flex: 1;
+
+    padding: 1rem;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text-color);
+
+    font-size: 1rem;
+}
+
+.search-form button {
+    padding: 1rem 1.5rem;
+
+    background-color: var(--primary-color);
+
+    color: white;
+
+    transition: background-color var(--transition-speed);
+}
+
+.search-form button:hover {
+    background-color: #1d4ed8;
+}

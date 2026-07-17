@@ -1,13 +1,15 @@
-/**
- * Register page of the application.
- */
-
 import "./Register.css";
+
+import AuthForm from "../../components/authForm/AuthForm";
+
+/**
+ * Displays the registration page.
+ */
 
 function Register() {
     return (
         <main>
-            <h1>Register</h1>
+            <AuthForm mode="register" />
         </main>
     );
 }

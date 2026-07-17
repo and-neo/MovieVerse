@@ -1,13 +1,15 @@
-/**
- * Login page of the application.
- */
-
 import "./Login.css";
+
+import AuthForm from "../../components/authForm/AuthForm";
+
+/**
+ * Displays the login page.
+ */
 
 function Login() {
     return (
         <main>
-            <h1>Login</h1>
+            <AuthForm mode="login" />
         </main>
     );
 }

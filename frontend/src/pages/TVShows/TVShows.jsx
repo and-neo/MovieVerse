@@ -1,7 +1,7 @@
 import "./TVShows.css";
 
-import PageHeader from "../../components/pageHeader/PageHeader";
-import MediaGrid from "../../components/mediaGrid/MediaGrid";
+import PageHeader from "../../components/common/pageHeader/PageHeader";
+import MediaGrid from "../../components/media/mediaGrid/MediaGrid";
 import Pagination from "../../components/pagination/Pagination";
 
 import tvShows from "../../data/tvShows";

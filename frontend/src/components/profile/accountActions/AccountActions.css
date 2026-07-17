@@ -1,0 +1,92 @@
+/* AccountActions styles */
+
+.account-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.account-actions-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-actions-title {
+    font-size: 1.5rem;
+}
+
+.account-actions-description,
+.account-action-description {
+    margin-top: 0.25rem;
+    color: var(--text-secondary);
+}
+
+.account-action-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.account-action-title {
+    font-size: 1.15rem;
+}
+
+.account-logout-button,
+.account-delete-button {
+    flex-shrink: 0;
+}
+
+.account-danger-section {
+    border-color: var(--error-color);
+}
+
+.account-delete-button {
+    background-color: var(--error-color);
+}
+
+.delete-confirmation {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.delete-confirmation-message {
+    color: var(--error-color);
+    font-weight: 600;
+}
+
+.delete-confirmation-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.account-action-message {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .account-action-section {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .delete-confirmation {
+        align-items: stretch;
+    }
+
+    .delete-confirmation-actions {
+        flex-direction: column;
+    }
+
+    .account-logout-button,
+    .account-delete-button,
+    .account-cancel-delete-button {
+        width: 100%;
+    }
+}
