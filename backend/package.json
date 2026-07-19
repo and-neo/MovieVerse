@@ -1,0 +1,15 @@
+{
+    "name": "movieverse-backend",
+    "version": "1.0.0",
+    "description": "Backend API for MovieVerse",
+    "private": true,
+    "type": "module",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js"
+    },
+    "keywords": [],
+    "author": "Andreas Neofytou",
+    "license": "MIT"
+}
