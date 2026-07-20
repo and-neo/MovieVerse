@@ -1,8 +1,10 @@
 # MovieVerse
 
-MovieVerse is a full-stack web application for discovering movies and TV shows, creating reviews, and managing personal favorites and watchlists.
+MovieVerse is a full-stack web application for discovering movies and TV
+shows, creating reviews, and managing personal favorites and watchlists.
 
-The application is being developed as part of a Bachelor's dissertation in Computing using the MERN technology stack.
+The application is being developed as part of a Bachelor's dissertation
+in Computing using the MERN technology stack.
 
 ---
 
@@ -14,13 +16,17 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 - React Router
 - Vite
 
-### Backend (Planned)
+### Backend
 
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
 - JWT Authentication
+- bcrypt
+- Helmet
+- CORS
+- Morgan
 
 ### External Services
 
@@ -30,7 +36,7 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 
 # Project Structure
 
-```
+```text
 MovieVerse/
 │
 ├── frontend/
@@ -54,6 +60,18 @@ MovieVerse/
 │   └── ...
 │
 ├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── app.js
+│   │   └── server.js
+│   │
+│   └── ...
 │
 └── README.md
 ```
@@ -62,16 +80,23 @@ MovieVerse/
 
 # Architecture
 
-The application follows a three-layer client-server architecture.
-
-```
-Presentation Layer
+```text
+React Frontend
         │
         ▼
-Business Logic Layer
+Express Routes
         │
         ▼
-Data Layer
+Controllers
+        │
+        ▼
+Services
+        │
+        ▼
+Mongoose Models
+        │
+        ▼
+MongoDB
 ```
 
 ---
@@ -86,24 +111,41 @@ Data Layer
 - TV Show Details
 - Search Movies & TV Shows
 
+### Authentication
+
+- User Registration
+- User Login
+- JWT Authentication
+- Protected Routes
+- User Profile Endpoint
+
+### User Library
+
+- Add to Favorites
+- Remove from Favorites
+- View Favorites
+- Add to Watchlist
+- Remove from Watchlist
+- View Watchlist
+
 ### User Interface
 
-- Login
-- Register
+- Login UI
+- Register UI
 - Profile Page
-- Edit Username (UI)
-- Change Password (UI)
-- Change Avatar (UI)
-- Logout (UI)
-- Delete Account Confirmation (UI)
+- Edit Username
+- Change Password
+- Change Avatar
+- Logout
+- Delete Account Confirmation
 
 ### Coming Soon
 
-- Favorites
-- Watchlist
-- Reviews
-- Authentication
-- Backend Integration
+- Reviews API
+- TMDb Backend Integration
+- Library Page
+- User Settings
+- Admin Dashboard (Optional)
 
 ---
 
@@ -119,16 +161,24 @@ Data Layer
 - [x] Profile UI
 - [x] Frontend component architecture
 - [x] MongoDB schema design
-- [ ] API Integration
-- [ ] Backend implementation
-- [ ] Authentication
-- [ ] Database integration
+- [x] Express server
+- [x] MongoDB connection
+- [x] Error handling
+- [x] JWT Authentication
+- [x] User model
+- [x] Review model
+- [x] Favorites API
+- [x] Watchlist API
+- [x] Service layer
+- [ ] Reviews API
+- [ ] TMDb integration
+- [ ] Frontend ↔ Backend integration
 
 ---
 
 # Completed Sprints
 
-## Sprint 1 – Project Foundation
+## Sprint 1 -- Project Foundation
 
 - Project setup
 - React Router
@@ -136,9 +186,7 @@ Data Layer
 - Navbar
 - Footer
 
----
-
-## Sprint 2 – Home & Navigation
+## Sprint 2 -- Home & Navigation
 
 - Homepage
 - Hero Section
@@ -146,18 +194,14 @@ Data Layer
 - Trending Section
 - Responsive Layout
 
----
-
-## Sprint 3 – Media Pages
+## Sprint 3 -- Media Pages
 
 - Movies Page
 - TV Shows Page
 - Search Results
 - Reusable Media Components
 
----
-
-## Sprint 4 – Media Details
+## Sprint 4 -- Media Details
 
 - Dynamic Movie Details
 - Dynamic TV Show Details
@@ -168,45 +212,71 @@ Data Layer
 - Similar Media
 - Scroll Restoration
 
----
-
-## Sprint 5 – User Profile
+## Sprint 5 -- User Profile
 
 - Login UI
 - Register UI
 - Reusable AuthForm
 - Profile Page
-- Profile Header
-- Profile Statistics
-- Edit Profile Form
-- Username Validation
-- Password Validation
-- Avatar Preview
-- Smooth Scroll to Edit Form
 - Account Actions
-- Logout Placeholder
-- Delete Account Confirmation
 - Component Refactoring by Feature
+
+## Sprint 6 -- Backend Foundation
+
+- Express Server
+- MongoDB Connection
+- User Model
+- Review Model
+- Global Error Handling
+- JWT Authentication
+
+## Sprint 7 -- User Library
+
+- Favorites API
+- Watchlist API
+- Generic Library Service
+- Controller Refactoring
+- Service Layer Architecture
+
+---
+
+# API Endpoints
+
+## Authentication
+
+- POST /api/auth/register
+- POST /api/auth/login
+- GET /api/auth/profile
+
+## Favorites
+
+- GET /api/favorites
+- POST /api/favorites
+- DELETE /api/favorites/:contentType/:tmdbId
+
+## Watchlist
+
+- GET /api/watchlist
+- POST /api/watchlist
+- DELETE /api/watchlist/:contentType/:tmdbId
 
 ---
 
 # Roadmap
 
-### Sprint 6
+## Sprint 8
 
-- TMDb API Integration
-- Axios Services
-- Environment Variables
-- Custom Hooks
-- Loading States
-- Error Handling
+- Reviews API
+- Review CRUD
+- Update Review
+- Delete Review
 
-### Future Sprints
+## Future Sprints
 
-- JWT Authentication
-- Favorites
-- Watchlist
-- Reviews
+- TMDb Backend Integration
+- Frontend API Integration
+- User Library Page
+- User Settings
 - Admin Dashboard (Optional)
 
 ---
