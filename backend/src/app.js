@@ -8,6 +8,8 @@ import morgan from "morgan";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import notFoundMiddleware from "./middleware/notFoundMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
+import favoriteRoutes from "./routes/favoriteRoutes.js";
+import watchlistRoutes from "./routes/watchlistRoutes.js";
 
 const app = express();
 
@@ -39,6 +41,8 @@ app.get("/api/health", (req, res) => {
 // API routes
 
 app.use("/api/auth", authRoutes);
+app.use("/api/favorites", favoriteRoutes);
+app.use("/api/watchlist", watchlistRoutes);
 
 // Undefined routes
 
