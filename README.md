@@ -14,13 +14,17 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 - React Router
 - Vite
 
-### Backend (Planned)
+### Backend
 
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
 - JWT Authentication
+- bcrypt
+- Helmet
+- CORS
+- Morgan
 
 ### External Services
 
@@ -30,7 +34,7 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 
 # Project Structure
 
-```
+```text
 MovieVerse/
 │
 ├── frontend/
@@ -54,6 +58,18 @@ MovieVerse/
 │   └── ...
 │
 ├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── app.js
+│   │   └── server.js
+│   │
+│   └── ...
 │
 └── README.md
 ```
@@ -62,16 +78,23 @@ MovieVerse/
 
 # Architecture
 
-The application follows a three-layer client-server architecture.
-
-```
-Presentation Layer
+```text
+React Frontend
         │
         ▼
-Business Logic Layer
+Express Routes
         │
         ▼
-Data Layer
+Controllers
+        │
+        ▼
+Services
+        │
+        ▼
+Mongoose Models
+        │
+        ▼
+MongoDB
 ```
 
 ---
@@ -86,24 +109,51 @@ Data Layer
 - TV Show Details
 - Search Movies & TV Shows
 
+### Authentication
+
+- User Registration
+- User Login
+- JWT Authentication
+- Protected Routes
+- User Profile Endpoint
+
+### User Library
+
+- Add to Favorites
+- Remove from Favorites
+- View Favorites
+- Add to Watchlist
+- Remove from Watchlist
+- View Watchlist
+
+### Reviews
+
+- Create Review
+- View Reviews by Movie or TV Show
+- Update Own Review
+- Delete Own Review
+- Rating Validation
+- Review Ownership Protection
+- One Review per User and Media Item
+
 ### User Interface
 
-- Login
-- Register
+- Login UI
+- Register UI
 - Profile Page
-- Edit Username (UI)
-- Change Password (UI)
-- Change Avatar (UI)
-- Logout (UI)
-- Delete Account Confirmation (UI)
+- Edit Username
+- Change Password
+- Change Avatar
+- Logout
+- Delete Account Confirmation
 
 ### Coming Soon
 
-- Favorites
-- Watchlist
-- Reviews
-- Authentication
-- Backend Integration
+- TMDb Backend Integration
+- Frontend and Backend Integration
+- Library Page
+- Review UI Integration
+- User Settings
 
 ---
 
@@ -119,10 +169,22 @@ Data Layer
 - [x] Profile UI
 - [x] Frontend component architecture
 - [x] MongoDB schema design
-- [ ] API Integration
-- [ ] Backend implementation
-- [ ] Authentication
-- [ ] Database integration
+- [x] Express server
+- [x] MongoDB connection
+- [x] Global error handling
+- [x] JWT Authentication
+- [x] User model
+- [x] Review model
+- [x] Favorites API
+- [x] Watchlist API
+- [x] Library service
+- [x] Reviews API
+- [x] Review service
+- [x] Review ownership authorization
+- [ ] TMDb backend integration
+- [ ] Frontend and backend integration
+- [ ] Library page integration
+- [ ] Review UI integration
 
 ---
 
@@ -136,8 +198,6 @@ Data Layer
 - Navbar
 - Footer
 
----
-
 ## Sprint 2 – Home & Navigation
 
 - Homepage
@@ -146,16 +206,12 @@ Data Layer
 - Trending Section
 - Responsive Layout
 
----
-
 ## Sprint 3 – Media Pages
 
 - Movies Page
 - TV Shows Page
 - Search Results
 - Reusable Media Components
-
----
 
 ## Sprint 4 – Media Details
 
@@ -168,46 +224,101 @@ Data Layer
 - Similar Media
 - Scroll Restoration
 
----
-
 ## Sprint 5 – User Profile
 
 - Login UI
 - Register UI
 - Reusable AuthForm
 - Profile Page
-- Profile Header
-- Profile Statistics
-- Edit Profile Form
-- Username Validation
-- Password Validation
-- Avatar Preview
-- Smooth Scroll to Edit Form
 - Account Actions
-- Logout Placeholder
-- Delete Account Confirmation
 - Component Refactoring by Feature
+
+## Sprint 6 – Backend Foundation
+
+- Express Server
+- MongoDB Connection
+- User Model
+- Review Model
+- Global Error Handling
+- JWT Authentication
+
+## Sprint 7 – User Library
+
+- Favorites API
+- Watchlist API
+- Generic Library Service
+- Controller Refactoring
+- Service Layer Architecture
+
+## Sprint 8 – Reviews API
+
+- Create Review
+- Retrieve Reviews by Media Item
+- Update Own Review
+- Delete Own Review
+- Review Service
+- Ownership Authorization
+- Duplicate Review Protection
+- Postman Regression Testing
+
+---
+
+# API Endpoints
+
+## Authentication
+
+```http
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/auth/profile
+```
+
+## Favorites
+
+```http
+GET    /api/favorites
+POST   /api/favorites
+DELETE /api/favorites/:contentType/:tmdbId
+```
+
+## Watchlist
+
+```http
+GET    /api/watchlist
+POST   /api/watchlist
+DELETE /api/watchlist/:contentType/:tmdbId
+```
+
+## Reviews
+
+```http
+POST   /api/reviews
+GET    /api/reviews/:contentType/:tmdbId
+PATCH  /api/reviews/:reviewId
+DELETE /api/reviews/:reviewId
+```
 
 ---
 
 # Roadmap
 
-### Sprint 6
+## Sprint 9
 
-- TMDb API Integration
-- Axios Services
-- Environment Variables
-- Custom Hooks
-- Loading States
-- Error Handling
+- TMDb Backend Integration
+- TMDb Service
+- Movie Endpoints
+- TV Show Endpoints
+- Search Endpoint
+- External API Error Handling
 
-### Future Sprints
+## Future Sprints
 
-- JWT Authentication
-- Favorites
-- Watchlist
-- Reviews
-- Admin Dashboard (Optional)
+- Frontend API Integration
+- Authentication State
+- Protected Frontend Routes
+- User Library Page
+- Review UI Integration
+- User Settings
 
 ---
 

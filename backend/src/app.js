@@ -10,6 +10,7 @@ import notFoundMiddleware from "./middleware/notFoundMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
 import favoriteRoutes from "./routes/favoriteRoutes.js";
 import watchlistRoutes from "./routes/watchlistRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/favorites", favoriteRoutes);
 app.use("/api/watchlist", watchlistRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 // Undefined routes
 
