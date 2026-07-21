@@ -45,7 +45,14 @@ async function shutdownServer(signal) {
 process.on("SIGINT", () => shutdownServer("SIGINT"));
 process.on("SIGTERM", () => shutdownServer("SIGTERM"));
 
+if (!process.env.TMDB_API_KEY) {
+    console.error("TMDB_API_KEY is missing.");
+    process.exit(1);
+}
+
 startServer().catch((error) => {
     console.error(`Server startup failed: ${error.message}`);
     process.exit(1);
 });
+
+console.log("TMDb API:", process.env.TMDB_API_KEY ? "Loaded" : "Missing");

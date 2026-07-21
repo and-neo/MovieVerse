@@ -11,6 +11,9 @@ import authRoutes from "./routes/authRoutes.js";
 import favoriteRoutes from "./routes/favoriteRoutes.js";
 import watchlistRoutes from "./routes/watchlistRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
+import movieRoutes from "./routes/movieRoutes.js";
+import tvRoutes from "./routes/tvRoutes.js";
+import searchRoutes from "./routes/searchRoutes.js";
 
 const app = express();
 
@@ -45,6 +48,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/favorites", favoriteRoutes);
 app.use("/api/watchlist", watchlistRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/movies", movieRoutes);
+app.use("/api/tv", tvRoutes);
+app.use("/api/search", searchRoutes);
 
 // Undefined routes
 
