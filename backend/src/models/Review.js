@@ -1,12 +1,5 @@
 import mongoose from "mongoose";
 
-/**
- * Review model.
- *
- * Stores user reviews and ratings for movies and TV shows.
- * References a registered user and a TMDB media item.
- */
-
 const reviewSchema = new mongoose.Schema(
     {
         user: {
@@ -15,30 +8,30 @@ const reviewSchema = new mongoose.Schema(
             required: true,
         },
 
-        tmdbId: {
-            type: Number,
+        contentType: {
+            type: String,
+            enum: ["movie", "tv"],
             required: true,
         },
 
-        mediaType: {
-            type: String,
-            enum: ["movie", "tv"],
+        tmdbId: {
+            type: Number,
             required: true,
         },
 
         rating: {
             type: Number,
             required: true,
-        },
-
-        title: {
-            type: String,
-            default: "",
+            min: [1, "Rating must be at least 1."],
+            max: [10, "Rating cannot exceed 10."],
         },
 
         reviewText: {
             type: String,
             required: true,
+            trim: true,
+            minlength: [10, "Review must contain at least 10 characters."],
+            maxlength: [2000, "Review cannot exceed 2000 characters."],
         },
     },
     {
@@ -46,4 +39,23 @@ const reviewSchema = new mongoose.Schema(
     },
 );
 
-export default mongoose.model("Review", reviewSchema);
+reviewSchema.index(
+    {
+        user: 1,
+        contentType: 1,
+        tmdbId: 1,
+    },
+    {
+        unique: true,
+    },
+);
+
+reviewSchema.index({
+    contentType: 1,
+    tmdbId: 1,
+    createdAt: -1,
+});
+
+const Review = mongoose.model("Review", reviewSchema);
+
+export default Review;

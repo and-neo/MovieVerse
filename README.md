@@ -1,10 +1,8 @@
 # MovieVerse
 
-MovieVerse is a full-stack web application for discovering movies and TV
-shows, creating reviews, and managing personal favorites and watchlists.
+MovieVerse is a full-stack web application for discovering movies and TV shows, creating reviews, and managing personal favorites and watchlists.
 
-The application is being developed as part of a Bachelor's dissertation
-in Computing using the MERN technology stack.
+The application is being developed as part of a Bachelor's dissertation in Computing using the MERN technology stack.
 
 ---
 
@@ -109,6 +107,9 @@ MongoDB
 - Browse TV Shows
 - Movie Details
 - TV Show Details
+- Frontend ↔ Backend Integration
+- TMDb Data Normalization
+- Loading & Error States
 - Search Movies & TV Shows
 
 ### Authentication
@@ -128,6 +129,16 @@ MongoDB
 - Remove from Watchlist
 - View Watchlist
 
+### Reviews
+
+- Create Review
+- View Reviews by Movie or TV Show
+- Update Own Review
+- Delete Own Review
+- Rating Validation
+- Review Ownership Protection
+- One Review per User and Media Item
+
 ### User Interface
 
 - Login UI
@@ -141,11 +152,9 @@ MongoDB
 
 ### Coming Soon
 
-- Reviews API
-- TMDb Backend Integration
 - Library Page
+- Review UI Integration
 - User Settings
-- Admin Dashboard (Optional)
 
 ---
 
@@ -163,22 +172,31 @@ MongoDB
 - [x] MongoDB schema design
 - [x] Express server
 - [x] MongoDB connection
-- [x] Error handling
+- [x] Global error handling
 - [x] JWT Authentication
 - [x] User model
 - [x] Review model
 - [x] Favorites API
 - [x] Watchlist API
-- [x] Service layer
-- [ ] Reviews API
-- [ ] TMDb integration
-- [ ] Frontend ↔ Backend integration
+- [x] Library service
+- [x] Reviews API
+- [x] Review service
+- [x] Review ownership authorization
+- [x] TMDb backend integration
+- [x] Frontend and backend integration
+- [x] Axios API layer
+- [x] Movie service
+- [x] TV service
+- [x] Data normalization
+- [x] Loading & error states
+- [ ] Library page integration
+- [ ] Review UI integration
 
 ---
 
 # Completed Sprints
 
-## Sprint 1 -- Project Foundation
+## Sprint 1 – Project Foundation
 
 - Project setup
 - React Router
@@ -186,7 +204,7 @@ MongoDB
 - Navbar
 - Footer
 
-## Sprint 2 -- Home & Navigation
+## Sprint 2 – Home & Navigation
 
 - Homepage
 - Hero Section
@@ -194,14 +212,14 @@ MongoDB
 - Trending Section
 - Responsive Layout
 
-## Sprint 3 -- Media Pages
+## Sprint 3 – Media Pages
 
 - Movies Page
 - TV Shows Page
 - Search Results
 - Reusable Media Components
 
-## Sprint 4 -- Media Details
+## Sprint 4 – Media Details
 
 - Dynamic Movie Details
 - Dynamic TV Show Details
@@ -212,7 +230,7 @@ MongoDB
 - Similar Media
 - Scroll Restoration
 
-## Sprint 5 -- User Profile
+## Sprint 5 – User Profile
 
 - Login UI
 - Register UI
@@ -221,7 +239,7 @@ MongoDB
 - Account Actions
 - Component Refactoring by Feature
 
-## Sprint 6 -- Backend Foundation
+## Sprint 6 – Backend Foundation
 
 - Express Server
 - MongoDB Connection
@@ -230,7 +248,7 @@ MongoDB
 - Global Error Handling
 - JWT Authentication
 
-## Sprint 7 -- User Library
+## Sprint 7 – User Library
 
 - Favorites API
 - Watchlist API
@@ -238,46 +256,114 @@ MongoDB
 - Controller Refactoring
 - Service Layer Architecture
 
+## Sprint 8 – Reviews API
+
+- Create Review
+- Retrieve Reviews by Media Item
+- Update Own Review
+- Delete Own Review
+- Review Service
+- Ownership Authorization
+- Duplicate Review Protection
+- Postman Regression Testing
+
+## Sprint 9 – TMDb Backend Integration
+
+- TMDb Service
+- Movie Endpoints
+- TV Endpoints
+- Search Endpoint
+- External API Error Handling
+
+## Sprint 10 – Frontend API Integration
+
+- Axios Configuration
+- Movie Service
+- TV Service
+- Home Integration
+- Movies Integration
+- TV Shows Integration
+- Movie Details Integration
+- TV Show Details Integration
+- Data Normalization
+- Loading & Error States
+
 ---
 
 # API Endpoints
 
 ## Authentication
 
-- POST /api/auth/register
-- POST /api/auth/login
-- GET /api/auth/profile
+```http
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/auth/profile
+```
 
 ## Favorites
 
-- GET /api/favorites
-- POST /api/favorites
-- DELETE /api/favorites/:contentType/:tmdbId
+```http
+GET    /api/favorites
+POST   /api/favorites
+DELETE /api/favorites/:contentType/:tmdbId
+```
 
 ## Watchlist
 
-- GET /api/watchlist
-- POST /api/watchlist
-- DELETE /api/watchlist/:contentType/:tmdbId
+```http
+GET    /api/watchlist
+POST   /api/watchlist
+DELETE /api/watchlist/:contentType/:tmdbId
+```
+
+## Reviews
+
+```http
+POST   /api/reviews
+GET    /api/reviews/:contentType/:tmdbId
+PATCH  /api/reviews/:reviewId
+DELETE /api/reviews/:reviewId
+```
+
+## Media
+
+```http
+GET /api/movies/trending
+GET /api/movies/popular
+GET /api/movies/:movieId
+
+GET /api/tv/trending
+GET /api/tv/popular
+GET /api/tv/:tvId
+
+GET /api/search
+```
 
 ---
 
 # Roadmap
 
-## Sprint 8
+## Sprint 11
 
-- Reviews API
-- Review CRUD
-- Update Review
-- Delete Review
+- Authentication Integration
+- Persistent Login
+- Protected Routes
 
-## Future Sprints
+## Sprint 12
 
-- TMDb Backend Integration
-- Frontend API Integration
-- User Library Page
-- User Settings
-- Admin Dashboard (Optional)
+- Favorites & Watchlist Integration
+- Library Page
+
+## Sprint 13
+
+- Review UI Integration
+
+## Sprint 14
+
+- Search Integration
+- UI Polish
+- Performance Improvements
+- Final Refactoring
 
 ---
 
