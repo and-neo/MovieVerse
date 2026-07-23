@@ -30,3 +30,12 @@
 .pagination-current {
     color: var(--text-secondary);
 }
+
+.pagination-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.pagination-button:not(:disabled):hover {
+    transform: translateY(-1px);
+}

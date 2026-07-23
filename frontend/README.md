@@ -9,16 +9,44 @@ Built with:
 - React Router
 - Axios
 
-Current features
+---
+
+## Current Features
+
+### Navigation
 
 - Routing
-- Layout
+- Main Layout
 - Navbar
 - Footer
 
-Upcoming
+### Media
 
 - Home Page
-- Movies
-- TV Shows
-- Authentication
+- Trending Movies
+- Trending TV Shows
+- Movies Page
+- TV Shows Page
+- Movie Details
+- TV Show Details
+
+### API Integration
+
+- Axios API Client
+- Movie Service
+- TV Service
+- Search Service (coming soon)
+- Data Normalization
+- Loading States
+- Error Handling
+
+---
+
+## Upcoming
+
+- Authentication Integration
+- Search Integration
+- Favorites
+- Watchlist
+- Reviews
+- Profile

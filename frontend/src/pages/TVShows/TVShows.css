@@ -1,1 +1,10 @@
-/* TVShows page styles */
+/* TV Shows page styles */
+
+.tvshows-status {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.tvshows-error {
+    color: var(--color-error, #c0392b);
+}

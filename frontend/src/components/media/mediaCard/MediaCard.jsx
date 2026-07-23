@@ -1,33 +1,43 @@
-import "./MediaCard.css";
-
 import { Link } from "react-router-dom";
+
+import "./MediaCard.css";
 
 /**
  * Displays a single media card.
- * Receives a media item through props and renders its basic information.
+ * Receives a normalized media item through props.
  */
 
 function MediaCard({ item }) {
     const detailsPath =
         item.type === "movie" ? `/movies/${item.id}` : `/tvshows/${item.id}`;
 
-    const releaseYear = new Date(item.releaseDate).getFullYear();
+    const releaseYear = item.releaseDate
+        ? new Date(item.releaseDate).getFullYear()
+        : "Unknown";
+
+    const rating = Number(item.voteAverage || 0).toFixed(1);
 
     return (
         <Link to={detailsPath}>
             <article className="media-card">
-                <img
-                    src={item.poster}
-                    alt={item.title}
-                    className="media-card-image"
-                />
+                {item.poster ? (
+                    <img
+                        src={item.poster}
+                        alt={`${item.title} poster`}
+                        className="media-card-image"
+                    />
+                ) : (
+                    <div className="media-card-image media-card-placeholder">
+                        No image available
+                    </div>
+                )}
 
                 <div className="media-card-content">
-                    <h3 className="media-card-title">{item.title}</h3>
+                    <h3 className="media-card-title">
+                        {item.title || "Untitled"}
+                    </h3>
 
-                    <p className="media-card-rating">
-                        ⭐ {item.voteAverage.toFixed(1)}
-                    </p>
+                    <p className="media-card-rating">⭐ {rating}</p>
 
                     <p className="media-card-meta">
                         {item.genres.slice(0, 2).join(" • ")} • {releaseYear}

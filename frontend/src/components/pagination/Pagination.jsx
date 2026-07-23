@@ -2,17 +2,35 @@ import "./Pagination.css";
 
 /**
  * Displays pagination controls.
- * Functionality will be added later.
  */
 
-function Pagination() {
+function Pagination({ currentPage, totalPages, onPrevious, onNext }) {
+    const isPreviousDisabled = currentPage <= 1;
+    const isNextDisabled = currentPage >= totalPages;
+
     return (
-        <nav className="pagination">
-            <button className="pagination-button">Previous</button>
+        <nav className="pagination" aria-label="Movies pagination">
+            <button
+                type="button"
+                className="pagination-button"
+                onClick={onPrevious}
+                disabled={isPreviousDisabled}
+            >
+                Previous
+            </button>
 
-            <span className="pagination-current">Page 1</span>
+            <span className="pagination-current">
+                Page {currentPage} of {totalPages}
+            </span>
 
-            <button className="pagination-button">Next</button>
+            <button
+                type="button"
+                className="pagination-button"
+                onClick={onNext}
+                disabled={isNextDisabled}
+            >
+                Next
+            </button>
         </nav>
     );
 }

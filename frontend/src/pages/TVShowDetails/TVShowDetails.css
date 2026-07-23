@@ -1,1 +1,15 @@
-/* TVShowDetails page styles */
+/* TV show details page styles */
+
+.tvshow-details-status {
+    min-height: 50vh;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.tvshow-details-error {
+    color: var(--color-error, #c0392b);
+}
+
+.tvshow-details-error h1 {
+    margin-bottom: 1rem;
+}

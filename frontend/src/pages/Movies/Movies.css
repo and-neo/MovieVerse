@@ -1,1 +1,10 @@
 /* Movies page styles */
+
+.movies-status {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.movies-error {
+    color: var(--color-error, #c0392b);
+}

@@ -1,7 +1,8 @@
-import "./TVShowDetails.css";
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import "./TVShowDetails.css";
+import "../../styles/utilities.css";
 
 import MediaHero from "../../components/media/mediaHero/MediaHero";
 import MediaOverview from "../../components/media/mediaOverview/MediaOverview";
@@ -9,47 +10,96 @@ import CastList from "../../components/cast/castList/CastList";
 import ReviewList from "../../components/review/reviewList/ReviewList";
 import SimilarMedia from "../../components/media/similarMedia/SimilarMedia";
 
-import tvShows from "../../data/tvShows";
+import { getTvShowDetails } from "../../services/tvService";
+import normalizeTvShowDetails from "../../utils/normalizeTvShowDetails";
 
 /**
  * Displays the details of a selected TV show.
- * Currently uses mock data.
  */
-
 function TVShowDetails() {
     const { id } = useParams();
 
+    const [tvShow, setTvShow] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
+
     useEffect(() => {
+        let isMounted = true;
+
         window.scrollTo(0, 0);
+
+        const fetchTvShow = async () => {
+            try {
+                setIsLoading(true);
+                setErrorMessage("");
+
+                const tvData = await getTvShowDetails(id);
+
+                if (!isMounted) {
+                    return;
+                }
+
+                setTvShow(normalizeTvShowDetails(tvData));
+            } catch (error) {
+                if (!isMounted) {
+                    return;
+                }
+
+                setTvShow(null);
+
+                setErrorMessage(
+                    error.message || "Unable to load TV show details.",
+                );
+            } finally {
+                if (isMounted) {
+                    setIsLoading(false);
+                }
+            }
+        };
+
+        fetchTvShow();
+
+        return () => {
+            isMounted = false;
+        };
     }, [id]);
 
-    const show = tvShows.find((item) => item.id === Number(id));
-
-    if (!show) {
+    if (isLoading) {
         return (
             <main className="section">
-                <div className="container">
-                    <h1>TV show not found</h1>
+                <div className="container tvshow-details-status">
+                    <p>Loading TV show details...</p>
                 </div>
             </main>
         );
     }
 
-    const similarTVShows = tvShows
-        .filter((item) => item.id !== show.id)
-        .slice(0, 4);
+    if (errorMessage || !tvShow) {
+        return (
+            <main className="section">
+                <div className="container tvshow-details-status tvshow-details-error">
+                    <h1>TV show unavailable</h1>
+
+                    <p>
+                        {errorMessage ||
+                            "The requested TV show could not be found."}
+                    </p>
+                </div>
+            </main>
+        );
+    }
 
     return (
         <main>
-            <MediaHero item={show} />
+            <MediaHero item={tvShow} />
 
-            <MediaOverview overview={show.overview} />
+            <MediaOverview overview={tvShow.overview} />
 
-            <CastList cast={show.cast} />
+            <CastList cast={tvShow.cast} />
 
-            <ReviewList reviews={show.reviews} />
+            <ReviewList reviews={tvShow.reviews} />
 
-            <SimilarMedia items={similarTVShows} />
+            <SimilarMedia items={tvShow.similar} />
         </main>
     );
 }
