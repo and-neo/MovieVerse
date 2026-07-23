@@ -17,6 +17,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
 import SearchResults from "../pages/SearchResults/SearchResults";
+import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 function AppRouter() {
     return (
@@ -30,7 +31,9 @@ function AppRouter() {
                     <Route path="/tvshows/:id" element={<TVShowDetails />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route element={<ProtectedRoute />}>
+                        <Route path="/profile" element={<Profile />} />
+                    </Route>
                     <Route path="/search" element={<SearchResults />} />
                 </Route>
             </Routes>

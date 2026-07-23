@@ -2,16 +2,14 @@ import "./SearchResults.css";
 
 import PageHeader from "../../components/common/pageHeader/PageHeader";
 import MediaGrid from "../../components/media/mediaGrid/MediaGrid";
-import Pagination from "../../components/pagination/Pagination";
-
-import movies from "../../data/movies";
 
 /**
- * Displays search results.
- * Currently uses dummy data.
+ * Displays movie and TV show search results.
  */
 
 function SearchResults() {
+    const results = [];
+
     return (
         <main>
             <PageHeader
@@ -21,9 +19,11 @@ function SearchResults() {
 
             <section className="section">
                 <div className="container">
-                    <MediaGrid items={movies} />
-
-                    <Pagination />
+                    {results.length > 0 ? (
+                        <MediaGrid items={results} />
+                    ) : (
+                        <p>No search results to display.</p>
+                    )}
                 </div>
             </section>
         </main>

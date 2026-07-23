@@ -1,28 +1,21 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import AccountActions from "../../components/profile/AccountActions/AccountActions";
+import ProfileEditForm from "../../components/profile/ProfileEditForm/ProfileEditForm";
 import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
 import ProfileStats from "../../components/profile/ProfileStats/ProfileStats";
-import ProfileEditForm from "../../components/profile/ProfileEditForm/ProfileEditForm";
-import AccountActions from "../../components/profile/AccountActions/AccountActions";
+import useAuth from "../../hooks/useAuth";
 
 import "./Profile.css";
 
 /**
- * Profile page of the application.
+ * Displays the authenticated user's profile.
  */
 
-const mockUser = {
-    username: "Andreas",
-    email: "andreas@example.com",
-    avatarUrl: "",
-    joinedAt: "2026-01-15",
-    favoritesCount: 12,
-    watchlistCount: 8,
-};
-
 function Profile() {
-    const [isEditing, setIsEditing] = useState(false);
+    const { user } = useAuth();
 
+    const [isEditing, setIsEditing] = useState(false);
     const editFormRef = useRef(null);
 
     function handleEditProfile() {
@@ -42,23 +35,33 @@ function Profile() {
         }
     }, [isEditing]);
 
+    const profileUser = {
+        username: user.username,
+        email: user.email,
+        avatarUrl: user.avatarUrl || "",
+        joinedAt: user.createdAt,
+        favoritesCount: user.favorites?.length || 0,
+        watchlistCount: user.watchlist?.length || 0,
+    };
+
     return (
         <main className="profile-page">
             <ProfileHeader
-                user={mockUser}
+                user={profileUser}
                 onEdit={handleEditProfile}
                 isEditing={isEditing}
             />
 
-            <ProfileStats user={mockUser} />
+            <ProfileStats user={profileUser} />
 
             {isEditing && (
                 <ProfileEditForm
-                    user={mockUser}
+                    user={profileUser}
                     onCancel={handleCancelEditing}
                     formRef={editFormRef}
                 />
             )}
+
             <AccountActions />
         </main>
     );

@@ -1,22 +1,34 @@
 import "./AuthForm.css";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import useAuth from "../../hooks/useAuth";
 
 /**
  * Displays a login or registration form.
  */
 
 function AuthForm({ mode }) {
+    const location = useLocation();
+
+    const redirectPath = location.state?.from?.pathname || "/profile";
+
     const isRegister = mode === "register";
+
+    const navigate = useNavigate();
+
+    const { login, register } = useAuth();
 
     const [formData, setFormData] = useState({
         username: "",
+        identifier: "",
         email: "",
         password: "",
         confirmPassword: "",
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     function handleChange(event) {
@@ -28,7 +40,7 @@ function AuthForm({ mode }) {
         }));
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         setErrorMessage("");
@@ -38,10 +50,28 @@ function AuthForm({ mode }) {
             return;
         }
 
-        console.log({
-            mode,
-            formData,
-        });
+        setIsSubmitting(true);
+
+        try {
+            if (isRegister) {
+                await register({
+                    username: formData.username,
+                    email: formData.email,
+                    password: formData.password,
+                });
+            } else {
+                await login({
+                    identifier: formData.identifier,
+                    password: formData.password,
+                });
+            }
+
+            navigate(redirectPath, { replace: true });
+        } catch (error) {
+            setErrorMessage(error.message);
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -81,19 +111,30 @@ function AuthForm({ mode }) {
                     )}
 
                     <div className="form-group">
-                        <label className="form-label" htmlFor="email">
-                            Email
+                        <label
+                            className="form-label"
+                            htmlFor={isRegister ? "email" : "identifier"}
+                        >
+                            {isRegister ? "Email" : "Email or Username"}
                         </label>
 
                         <input
                             className="form-input"
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
+                            type={isRegister ? "email" : "text"}
+                            id={isRegister ? "email" : "identifier"}
+                            name={isRegister ? "email" : "identifier"}
+                            value={
+                                isRegister
+                                    ? formData.email
+                                    : formData.identifier
+                            }
                             onChange={handleChange}
-                            placeholder="Enter your email"
-                            autoComplete="email"
+                            placeholder={
+                                isRegister
+                                    ? "Enter your email"
+                                    : "Enter your email or username"
+                            }
+                            autoComplete={isRegister ? "email" : "username"}
                             required
                         />
                     </div>
@@ -147,8 +188,18 @@ function AuthForm({ mode }) {
                         </p>
                     )}
 
-                    <button type="submit" className="btn auth-submit">
-                        {isRegister ? "Register" : "Login"}
+                    <button
+                        type="submit"
+                        className="btn auth-submit"
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting
+                            ? isRegister
+                                ? "Creating account..."
+                                : "Signing in..."
+                            : isRegister
+                              ? "Register"
+                              : "Login"}
                     </button>
 
                     <p className="auth-switch">

@@ -35,7 +35,6 @@
     font-size: 1.15rem;
 }
 
-.account-logout-button,
 .account-delete-button {
     flex-shrink: 0;
 }
@@ -84,7 +83,6 @@
         flex-direction: column;
     }
 
-    .account-logout-button,
     .account-delete-button,
     .account-cancel-delete-button {
         width: 100%;

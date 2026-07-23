@@ -13,6 +13,8 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 - React.js
 - React Router
 - Vite
+- Axios
+- Context API
 
 ### Backend
 
@@ -118,6 +120,7 @@ MongoDB
 - User Login
 - JWT Authentication
 - Protected Routes
+- Persistent Login
 - User Profile Endpoint
 
 ### User Library
@@ -158,6 +161,57 @@ MongoDB
 
 ---
 
+# API Endpoints
+
+## Authentication
+
+```http
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/auth/profile
+```
+
+## Favorites
+
+```http
+GET    /api/favorites
+POST   /api/favorites
+DELETE /api/favorites/:contentType/:tmdbId
+```
+
+## Watchlist
+
+```http
+GET    /api/watchlist
+POST   /api/watchlist
+DELETE /api/watchlist/:contentType/:tmdbId
+```
+
+## Reviews
+
+```http
+POST   /api/reviews
+GET    /api/reviews/:contentType/:tmdbId
+PATCH  /api/reviews/:reviewId
+DELETE /api/reviews/:reviewId
+```
+
+## Media
+
+```http
+GET /api/movies/trending
+GET /api/movies/popular
+GET /api/movies/:movieId
+
+GET /api/tv/trending
+GET /api/tv/popular
+GET /api/tv/:tvId
+
+GET /api/search
+```
+
+---
+
 # Current Progress
 
 - [x] Project setup
@@ -189,8 +243,12 @@ MongoDB
 - [x] TV service
 - [x] Data normalization
 - [x] Loading & error states
+- [x] Authentication integration
+- [x] Persistent login
+- [x] Protected routes
 - [ ] Library page integration
 - [ ] Review UI integration
+- [ ] Universal SearchBar Integration
 
 ---
 
@@ -288,66 +346,20 @@ MongoDB
 - Data Normalization
 - Loading & Error States
 
----
+## Sprint 11 -- Authentication Integration
 
-# API Endpoints
-
-## Authentication
-
-```http
-POST /api/auth/register
-POST /api/auth/login
-GET  /api/auth/profile
-```
-
-## Favorites
-
-```http
-GET    /api/favorites
-POST   /api/favorites
-DELETE /api/favorites/:contentType/:tmdbId
-```
-
-## Watchlist
-
-```http
-GET    /api/watchlist
-POST   /api/watchlist
-DELETE /api/watchlist/:contentType/:tmdbId
-```
-
-## Reviews
-
-```http
-POST   /api/reviews
-GET    /api/reviews/:contentType/:tmdbId
-PATCH  /api/reviews/:reviewId
-DELETE /api/reviews/:reviewId
-```
-
-## Media
-
-```http
-GET /api/movies/trending
-GET /api/movies/popular
-GET /api/movies/:movieId
-
-GET /api/tv/trending
-GET /api/tv/popular
-GET /api/tv/:tvId
-
-GET /api/search
-```
+- Auth Context
+- JWT Persistence
+- Protected Routes
+- Login Integration
+- Register Integration
+- Profile Integration
+- Navbar Authentication State
+- Logout
 
 ---
 
 # Roadmap
-
-## Sprint 11
-
-- Authentication Integration
-- Persistent Login
-- Protected Routes
 
 ## Sprint 12
 
@@ -357,6 +369,7 @@ GET /api/search
 ## Sprint 13
 
 - Review UI Integration
+- Universal SearchBar Integration
 
 ## Sprint 14
 

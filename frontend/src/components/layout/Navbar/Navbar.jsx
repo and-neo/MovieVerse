@@ -1,23 +1,31 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import { navigation } from "../../../constants/navigation";
+import useAuth from "../../../hooks/useAuth";
 
 import "./Navbar.css";
 
 /**
  * Main navigation bar displayed across the application.
- * Provides quick access to the primary pages.
+ * Provides access to primary pages and authentication actions.
  */
 
 function Navbar() {
+    const { user, isAuthenticated, logout } = useAuth();
+    const navigate = useNavigate();
+
+    function handleLogout() {
+        logout();
+        navigate("/", { replace: true });
+    }
+
     return (
         <header className="navbar">
             <div className="container navbar-container">
-                {/* Logo */}
                 <div className="navbar-logo">
                     <Link to="/">🎬 MovieVerse</Link>
                 </div>
 
-                {/* Main Navigation */}
                 <nav className="navbar-links">
                     {navigation.map((item) => (
                         <NavLink
@@ -32,15 +40,32 @@ function Navbar() {
                     ))}
                 </nav>
 
-                {/* Authentication */}
                 <div className="navbar-auth">
-                    <NavLink to="/login" className="nav-link">
-                        Login
-                    </NavLink>
+                    {isAuthenticated ? (
+                        <>
+                            <NavLink to="/profile" className="nav-link">
+                                {user.username}
+                            </NavLink>
 
-                    <NavLink to="/register" className="nav-link">
-                        Register
-                    </NavLink>
+                            <button
+                                type="button"
+                                className="navbar-logout"
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <NavLink to="/login" className="nav-link">
+                                Login
+                            </NavLink>
+
+                            <NavLink to="/register" className="nav-link">
+                                Register
+                            </NavLink>
+                        </>
+                    )}
                 </div>
             </div>
         </header>

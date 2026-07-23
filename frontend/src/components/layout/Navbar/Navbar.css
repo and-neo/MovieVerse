@@ -40,3 +40,17 @@
     border-bottom: 2px solid var(--primary-color);
     font-weight: 600;
 }
+
+.navbar-logout {
+    padding: 0;
+    border: none;
+    background: none;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.navbar-logout:hover {
+    color: var(--primary-color);
+}
