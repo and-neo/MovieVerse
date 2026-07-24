@@ -9,7 +9,6 @@ import {
 
 const router = express.Router();
 
-router.post("/", protect, addFavorite);
 router.route("/").get(protect, getFavorites).post(protect, addFavorite);
 router.delete("/:contentType/:tmdbId", protect, removeFavorite);
 

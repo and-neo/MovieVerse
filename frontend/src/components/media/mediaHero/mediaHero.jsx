@@ -1,9 +1,12 @@
 import "./MediaHero.css";
 
+import LibraryActions from "../libraryActions/LibraryActions";
+
 /**
  * Displays the main information of a movie or TV show.
  */
-function MediaHero({ item }) {
+
+function MediaHero({ item, contentType }) {
     const releaseYear = item.releaseDate
         ? new Date(item.releaseDate).getFullYear()
         : "Unknown";
@@ -78,6 +81,12 @@ function MediaHero({ item }) {
                         <span>Status: {item.status}</span>
                         <span>Language: {originalLanguage}</span>
                     </div>
+                    <LibraryActions
+                        contentType={contentType}
+                        tmdbId={item.id}
+                        title={item.title}
+                        posterPath={item.posterPath}
+                    />
                 </div>
             </div>
         </section>

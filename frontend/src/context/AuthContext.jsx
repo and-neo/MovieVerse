@@ -113,4 +113,4 @@ const AuthProvider = ({ children }) => {
     );
 };
 
-export { AuthProvider };
+export default AuthProvider;

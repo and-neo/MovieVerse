@@ -25,11 +25,15 @@ function normalizeMovieDetails(movie) {
         movie.similar?.results?.slice(0, 4).map((similarMovie) => ({
             id: similarMovie.id,
             type: "movie",
-            title: similarMovie.title,
+            title: similarMovie.title || "Untitled",
+
+            posterPath: similarMovie.poster_path || null,
+
             poster: similarMovie.poster_path
                 ? `${TMDB_IMAGE_BASE_URL}${similarMovie.poster_path}`
                 : null,
-            releaseDate: similarMovie.release_date,
+
+            releaseDate: similarMovie.release_date || "",
             voteAverage: similarMovie.vote_average ?? 0,
             genres: ["Movie"],
         })) || [];
@@ -40,12 +44,17 @@ function normalizeMovieDetails(movie) {
         title: movie.title || "Untitled",
         tagline: movie.tagline || "",
         overview: movie.overview || "No overview is currently available.",
+
+        posterPath: movie.poster_path || null,
+
         poster: movie.poster_path
             ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}`
             : null,
+
         backdrop: movie.backdrop_path
             ? `${TMDB_BACKDROP_BASE_URL}${movie.backdrop_path}`
             : null,
+
         releaseDate: movie.release_date || "",
         voteAverage: movie.vote_average ?? 0,
         voteCount: movie.vote_count ?? 0,

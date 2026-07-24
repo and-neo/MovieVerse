@@ -47,6 +47,7 @@ MovieVerse/
 │   │   │   ├── cast/
 │   │   │   ├── common/
 │   │   │   ├── home/
+│   │   │   ├── library/
 │   │   │   ├── media/
 │   │   │   ├── profile/
 │   │   │   └── reviews/
@@ -81,7 +82,16 @@ MovieVerse/
 # Architecture
 
 ```text
-React Frontend
+React Components
+        │
+        ▼
+Hooks / Context
+        │
+        ▼
+Service Layer
+        │
+        ▼
+Axios
         │
         ▼
 Express Routes
@@ -93,7 +103,7 @@ Controllers
 Services
         │
         ▼
-Mongoose Models
+Models
         │
         ▼
 MongoDB
@@ -125,12 +135,12 @@ MongoDB
 
 ### User Library
 
-- Add to Favorites
-- Remove from Favorites
-- View Favorites
-- Add to Watchlist
-- Remove from Watchlist
-- View Watchlist
+- Personal Library
+- Favorites
+- Watchlist
+- Shared Library State
+- Protected Library Page
+- Live Library Synchronization
 
 ### Reviews
 
@@ -147,6 +157,7 @@ MongoDB
 - Login UI
 - Register UI
 - Profile Page
+- Library Page
 - Edit Username
 - Change Password
 - Change Avatar
@@ -155,7 +166,6 @@ MongoDB
 
 ### Coming Soon
 
-- Library Page
 - Review UI Integration
 - User Settings
 
@@ -246,7 +256,8 @@ GET /api/search
 - [x] Authentication integration
 - [x] Persistent login
 - [x] Protected routes
-- [ ] Library page integration
+- [x] Library page
+- [x] Shared Library Context
 - [ ] Review UI integration
 - [ ] Universal SearchBar Integration
 
@@ -357,23 +368,30 @@ GET /api/search
 - Navbar Authentication State
 - Logout
 
+## Sprint 12 – Library Integration
+
+- Shared Library Context
+- Favorites Integration
+- Watchlist Integration
+- Personal Library Page
+- Library Navigation
+- Live Profile Statistics
+
 ---
 
 # Roadmap
 
-## Sprint 12
-
-- Favorites & Watchlist Integration
-- Library Page
-
 ## Sprint 13
 
 - Review UI Integration
-- Universal SearchBar Integration
 
 ## Sprint 14
 
-- Search Integration
+- Universal Search
+- User Settings
+
+## Sprint 15
+
 - UI Polish
 - Performance Improvements
 - Final Refactoring

@@ -91,7 +91,7 @@ function TVShowDetails() {
 
     return (
         <main>
-            <MediaHero item={tvShow} />
+            <MediaHero item={tvShow} contentType="tv" />
 
             <MediaOverview overview={tvShow.overview} />
 

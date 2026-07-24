@@ -38,12 +38,28 @@ function Navbar() {
                             {item.name}
                         </NavLink>
                     ))}
+
+                    {isAuthenticated && (
+                        <NavLink
+                            to="/library"
+                            className={({ isActive }) =>
+                                isActive ? "nav-link active" : "nav-link"
+                            }
+                        >
+                            Library
+                        </NavLink>
+                    )}
                 </nav>
 
                 <div className="navbar-auth">
                     {isAuthenticated ? (
                         <>
-                            <NavLink to="/profile" className="nav-link">
+                            <NavLink
+                                to="/profile"
+                                className={({ isActive }) =>
+                                    isActive ? "nav-link active" : "nav-link"
+                                }
+                            >
                                 {user.username}
                             </NavLink>
 
@@ -57,11 +73,21 @@ function Navbar() {
                         </>
                     ) : (
                         <>
-                            <NavLink to="/login" className="nav-link">
+                            <NavLink
+                                to="/login"
+                                className={({ isActive }) =>
+                                    isActive ? "nav-link active" : "nav-link"
+                                }
+                            >
                                 Login
                             </NavLink>
 
-                            <NavLink to="/register" className="nav-link">
+                            <NavLink
+                                to="/register"
+                                className={({ isActive }) =>
+                                    isActive ? "nav-link active" : "nav-link"
+                                }
+                            >
                                 Register
                             </NavLink>
                         </>

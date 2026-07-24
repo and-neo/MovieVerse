@@ -91,7 +91,7 @@ function MovieDetails() {
 
     return (
         <main>
-            <MediaHero item={movie} />
+            <MediaHero item={movie} contentType="movie" />
 
             <MediaOverview overview={movie.overview} />
 

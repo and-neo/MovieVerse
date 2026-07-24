@@ -9,12 +9,13 @@ import AppError from "../utils/AppError.js";
  * @param {String} collectionName
  * @returns {Promise<Array>}
  */
+
 const addItem = async (user, field, item, collectionName) => {
     const { contentType, tmdbId, title, posterPath } = item;
 
-    if (!contentType || !tmdbId || !title || !posterPath) {
+    if (!contentType || !tmdbId || !title) {
         throw new AppError(
-            "Content type, TMDb ID, title and poster path are required.",
+            "Content type, TMDb ID and title are required.",
             400,
         );
     }
@@ -23,10 +24,16 @@ const addItem = async (user, field, item, collectionName) => {
         throw new AppError("Invalid content type.", 400);
     }
 
+    const normalizedTmdbId = Number(tmdbId);
+
+    if (!Number.isInteger(normalizedTmdbId) || normalizedTmdbId <= 0) {
+        throw new AppError("Invalid TMDb ID.", 400);
+    }
+
     const alreadyExists = user[field].some(
         (libraryItem) =>
             libraryItem.contentType === contentType &&
-            libraryItem.tmdbId === tmdbId,
+            libraryItem.tmdbId === normalizedTmdbId,
     );
 
     if (alreadyExists) {
@@ -38,9 +45,9 @@ const addItem = async (user, field, item, collectionName) => {
 
     user[field].push({
         contentType,
-        tmdbId,
+        tmdbId: normalizedTmdbId,
         title,
-        posterPath,
+        posterPath: posterPath || null,
     });
 
     await user.save();
@@ -55,6 +62,7 @@ const addItem = async (user, field, item, collectionName) => {
  * @param {String} field
  * @returns {Array}
  */
+
 const getItems = (user, field) => {
     return user[field];
 };
@@ -69,6 +77,7 @@ const getItems = (user, field) => {
  * @param {String} resourceName
  * @returns {Promise<Array>}
  */
+
 const removeItem = async (user, field, contentType, tmdbId, resourceName) => {
     if (!["movie", "tv"].includes(contentType)) {
         throw new AppError("Invalid content type.", 400);

@@ -24,8 +24,25 @@
 
     padding: var(--spacing-sm);
 
+    border: 1px solid transparent;
     border-radius: var(--border-radius);
     background-color: var(--background-color);
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        transform var(--transition-speed),
+        border-color var(--transition-speed);
+}
+
+.profile-stat:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+}
+
+.profile-stat:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
 }
 
 .profile-stat-value {

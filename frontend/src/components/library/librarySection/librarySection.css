@@ -1,0 +1,53 @@
+.library-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.library-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.library-section-title {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+.library-section-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.6rem;
+    border-radius: 999px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.library-section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 1.25rem;
+}
+
+.library-section-empty {
+    margin: 0;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--card-color);
+    color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+    .library-section-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}

@@ -4,16 +4,21 @@ import AccountActions from "../../components/profile/AccountActions/AccountActio
 import ProfileEditForm from "../../components/profile/ProfileEditForm/ProfileEditForm";
 import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
 import ProfileStats from "../../components/profile/ProfileStats/ProfileStats";
+
 import useAuth from "../../hooks/useAuth";
+import useFavorites from "../../hooks/useFavorites";
+import useWatchlist from "../../hooks/useWatchlist";
 
 import "./Profile.css";
 
 /**
  * Displays the authenticated user's profile.
  */
-
 function Profile() {
     const { user } = useAuth();
+
+    const { favorites } = useFavorites();
+    const { watchlist } = useWatchlist();
 
     const [isEditing, setIsEditing] = useState(false);
     const editFormRef = useRef(null);
@@ -40,8 +45,6 @@ function Profile() {
         email: user.email,
         avatarUrl: user.avatarUrl || "",
         joinedAt: user.createdAt,
-        favoritesCount: user.favorites?.length || 0,
-        watchlistCount: user.watchlist?.length || 0,
     };
 
     return (
@@ -52,7 +55,10 @@ function Profile() {
                 isEditing={isEditing}
             />
 
-            <ProfileStats user={profileUser} />
+            <ProfileStats
+                favoritesCount={favorites.length}
+                watchlistCount={watchlist.length}
+            />
 
             {isEditing && (
                 <ProfileEditForm

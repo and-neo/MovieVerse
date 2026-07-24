@@ -5,6 +5,7 @@ import { addItem, getItems, removeItem } from "../services/libraryService.js";
 /**
  * Adds a media item to the authenticated user's watchlist.
  */
+
 const addToWatchlist = catchAsync(async (req, res) => {
     const watchlist = await addItem(
         req.user,
@@ -25,6 +26,7 @@ const addToWatchlist = catchAsync(async (req, res) => {
 /**
  * Returns the authenticated user's watchlist.
  */
+
 const getWatchlist = catchAsync(async (req, res) => {
     const watchlist = getItems(req.user, "watchlist");
 
@@ -40,6 +42,7 @@ const getWatchlist = catchAsync(async (req, res) => {
 /**
  * Removes a media item from the authenticated user's watchlist.
  */
+
 const removeFromWatchlist = catchAsync(async (req, res) => {
     const { contentType, tmdbId } = req.params;
 
