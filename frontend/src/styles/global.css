@@ -52,6 +52,9 @@ body {
     --error-color: #ef4444;
     --border-color: #333333;
 
+    --surface-color: var(--card-color);
+    --text-muted-color: var(--text-secondary);
+
     /* Design System */
 
     --border-radius: 12px;

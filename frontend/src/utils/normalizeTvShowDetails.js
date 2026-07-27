@@ -1,3 +1,5 @@
+import normalizeTmdbReview from "./normalizeTmdbReview";
+
 const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 const TMDB_BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/original";
 const TMDB_PROFILE_BASE_URL = "https://image.tmdb.org/t/p/w185";
@@ -25,7 +27,7 @@ function normalizeTvShowDetails(tvShow) {
         tvShow.similar?.results?.slice(0, 4).map((show) => ({
             id: show.id,
             type: "tv",
-            title: show.name,
+            title: show.name || "Untitled",
 
             posterPath: show.poster_path || null,
 
@@ -33,10 +35,13 @@ function normalizeTvShowDetails(tvShow) {
                 ? `${TMDB_IMAGE_BASE_URL}${show.poster_path}`
                 : null,
 
-            releaseDate: show.first_air_date,
+            releaseDate: show.first_air_date || "",
             voteAverage: show.vote_average ?? 0,
-            genres: ["TV Show"],
+            genres: [],
         })) || [];
+
+    const reviews =
+        tvShow.reviews?.results?.slice(0, 5).map(normalizeTmdbReview) || [];
 
     return {
         id: tvShow.id,
@@ -64,7 +69,7 @@ function normalizeTvShowDetails(tvShow) {
         status: tvShow.status || "Unknown",
         originalLanguage: tvShow.original_language || "N/A",
         cast,
-        reviews: [],
+        reviews,
         similar: similarTvShows,
     };
 }

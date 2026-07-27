@@ -7,7 +7,7 @@ import "../../styles/utilities.css";
 import MediaHero from "../../components/media/mediaHero/MediaHero";
 import MediaOverview from "../../components/media/mediaOverview/MediaOverview";
 import CastList from "../../components/cast/castList/CastList";
-import ReviewList from "../../components/review/reviewList/ReviewList";
+import ReviewSection from "../../components/review/reviewSection/ReviewSection";
 import SimilarMedia from "../../components/media/similarMedia/SimilarMedia";
 
 import { getMovieDetails } from "../../services/movieService";
@@ -97,7 +97,11 @@ function MovieDetails() {
 
             <CastList cast={movie.cast} />
 
-            <ReviewList reviews={movie.reviews} />
+            <ReviewSection
+                contentType="movie"
+                tmdbId={movie.id}
+                tmdbReviews={movie.reviews}
+            />
 
             <SimilarMedia items={movie.similar} />
         </main>

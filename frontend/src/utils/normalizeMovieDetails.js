@@ -1,3 +1,5 @@
+import normalizeTmdbReview from "./normalizeTmdbReview";
+
 const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 const TMDB_BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/original";
 const TMDB_PROFILE_BASE_URL = "https://image.tmdb.org/t/p/w185";
@@ -35,8 +37,11 @@ function normalizeMovieDetails(movie) {
 
             releaseDate: similarMovie.release_date || "",
             voteAverage: similarMovie.vote_average ?? 0,
-            genres: ["Movie"],
+            genres: [],
         })) || [];
+
+    const reviews =
+        movie.reviews?.results?.slice(0, 5).map(normalizeTmdbReview) || [];
 
     return {
         id: movie.id,
@@ -63,7 +68,7 @@ function normalizeMovieDetails(movie) {
         status: movie.status || "Unknown",
         originalLanguage: movie.original_language || "N/A",
         cast,
-        reviews: [],
+        reviews,
         similar: similarMovies,
     };
 }

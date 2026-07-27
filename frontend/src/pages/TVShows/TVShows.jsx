@@ -15,6 +15,7 @@ const MAX_PAGES = 500;
 /**
  * Displays the TV Shows page.
  */
+
 function TVShows() {
     const [tvShows, setTvShows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);

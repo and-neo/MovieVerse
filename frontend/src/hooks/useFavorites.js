@@ -5,6 +5,7 @@ import useLibrary from "./useLibrary";
  *
  * @returns {Object}
  */
+
 function useFavorites() {
     const {
         favorites,

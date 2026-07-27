@@ -143,7 +143,7 @@ export const getPopularMovies = (page = 1) =>
 export const getMovieDetails = (movieId) =>
     fetchFromTmdb(TMDB_ENDPOINTS.movies.details(movieId), {
         language: "en-US",
-        append_to_response: "credits,similar,videos",
+        append_to_response: "credits,similar,videos,reviews",
     });
 
 /**
@@ -182,7 +182,7 @@ export const getPopularTvShows = (page = 1) =>
 export const getTvShowDetails = (tvId) =>
     fetchFromTmdb(TMDB_ENDPOINTS.tv.details(tvId), {
         language: "en-US",
-        append_to_response: "credits,similar,videos",
+        append_to_response: "credits,similar,videos,reviews",
     });
 
 /**

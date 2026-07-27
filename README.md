@@ -6,6 +6,17 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 
 ---
 
+## Highlights
+
+- MERN Stack Architecture
+- TMDb API Integration
+- JWT Authentication
+- Personal Library (Favorites & Watchlist)
+- MovieVerse Review System
+- Responsive User Interface
+- RESTful Backend API
+- Layered Architecture (Controller → Service → Model)
+
 # Technologies
 
 ### Frontend
@@ -144,13 +155,16 @@ MongoDB
 
 ### Reviews
 
+- MovieVerse Review System
+- TMDb Reviews Integration
 - Create Review
-- View Reviews by Movie or TV Show
-- Update Own Review
+- Edit Own Review
 - Delete Own Review
-- Rating Validation
+- Expandable Review Cards
+- Review Validation
 - Review Ownership Protection
 - One Review per User and Media Item
+- Live Review Updates
 
 ### User Interface
 
@@ -166,8 +180,9 @@ MongoDB
 
 ### Coming Soon
 
-- Review UI Integration
+- Universal Search
 - User Settings
+- UI Polish
 
 ---
 
@@ -258,8 +273,9 @@ GET /api/search
 - [x] Protected routes
 - [x] Library page
 - [x] Shared Library Context
-- [ ] Review UI integration
-- [ ] Universal SearchBar Integration
+- [x] Review UI integration
+- [ ] Universal SearchBar integration
+- [ ] UI polishing
 
 ---
 
@@ -377,27 +393,42 @@ GET /api/search
 - Library Navigation
 - Live Profile Statistics
 
+## Sprint 13 – Review UI Integration
+
+- MovieVerse Reviews
+- TMDb Reviews
+- Unified Review Components
+- Review Normalization
+- Expandable Review Cards
+- Review Form
+- Create Review
+- Edit Review
+- Delete Review
+- Login Prompt
+- Live UI Synchronization
+
 ---
 
 # Roadmap
 
-## Sprint 13
+## Sprint 14 – Universal Search
 
-- Review UI Integration
+- Universal Search Bar
+- Search Suggestions
+- Search Result Navigation
 
-## Sprint 14
-
-- Universal Search
-- User Settings
-
-## Sprint 15
+## Sprint 15 – Polish
 
 - UI Polish
+- User Settings
 - Performance Improvements
+- Responsive Improvements
 - Final Refactoring
 
 ---
 
 # Project Status
 
-🚧 Under Development
+🚧 Active Development
+
+Current Progress: ~90% Complete

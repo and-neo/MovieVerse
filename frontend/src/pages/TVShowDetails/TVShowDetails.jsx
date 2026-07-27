@@ -7,7 +7,7 @@ import "../../styles/utilities.css";
 import MediaHero from "../../components/media/mediaHero/MediaHero";
 import MediaOverview from "../../components/media/mediaOverview/MediaOverview";
 import CastList from "../../components/cast/castList/CastList";
-import ReviewList from "../../components/review/reviewList/ReviewList";
+import ReviewSection from "../../components/review/reviewSection/ReviewSection";
 import SimilarMedia from "../../components/media/similarMedia/SimilarMedia";
 
 import { getTvShowDetails } from "../../services/tvService";
@@ -97,7 +97,11 @@ function TVShowDetails() {
 
             <CastList cast={tvShow.cast} />
 
-            <ReviewList reviews={tvShow.reviews} />
+            <ReviewSection
+                contentType="tv"
+                tmdbId={tvShow.id}
+                tmdbReviews={tvShow.reviews}
+            />
 
             <SimilarMedia items={tvShow.similar} />
         </main>

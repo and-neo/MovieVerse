@@ -1,0 +1,128 @@
+.review-section {
+    padding-top: 0;
+}
+
+.review-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.review-section-description {
+    margin: 0.5rem 0 0;
+    color: var(--text-muted-color);
+}
+
+.review-groups {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.review-group {
+    min-width: 0;
+}
+
+.review-group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.review-group-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.review-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    padding: 0 0.5rem;
+    border-radius: 999px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.review-status {
+    margin: 0;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--surface-color);
+}
+
+.review-error {
+    color: var(--error-color);
+}
+
+.review-contribution {
+    margin-bottom: 2.5rem;
+}
+
+.review-login-prompt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    background-color: var(--surface-color);
+}
+
+.review-login-prompt h3 {
+    margin: 0;
+}
+
+.review-login-prompt p {
+    margin: 0.5rem 0 0;
+    color: var(--text-muted-color);
+}
+
+.review-login-link {
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.review-existing-message {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 0.75rem;
+    background-color: var(--surface-color);
+}
+
+.review-existing-message p {
+    margin: 0;
+}
+
+.review-write-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.review-write-button {
+    min-width: 10rem;
+}
+
+.review-form-wrapper {
+    width: 100%;
+}
+
+.review-action-error {
+    margin: 1rem 0 0;
+    color: var(--error-color);
+}
+
+@media (max-width: 576px) {
+    .review-login-prompt {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

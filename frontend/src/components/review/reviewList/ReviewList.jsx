@@ -3,26 +3,32 @@ import "./ReviewList.css";
 import ReviewCard from "../reviewCard/ReviewCard";
 
 /**
- * Displays a collection of user reviews.
+ * Displays a collection of normalized reviews.
  */
 
-function ReviewList({ reviews = [] }) {
+function ReviewList({
+    reviews = [],
+    emptyMessage = "No reviews are currently available.",
+    onEdit,
+    onDelete,
+    deletingReviewId = null,
+}) {
     if (reviews.length === 0) {
-        return null;
+        return <p className="reviews-empty">{emptyMessage}</p>;
     }
 
     return (
-        <section className="section">
-            <div className="container">
-                <h2 className="section-title">Reviews</h2>
-
-                <div className="reviews-list">
-                    {reviews.map((review) => (
-                        <ReviewCard key={review.id} review={review} />
-                    ))}
-                </div>
-            </div>
-        </section>
+        <div className="reviews-list">
+            {reviews.map((review) => (
+                <ReviewCard
+                    key={review.id}
+                    review={review}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                    isDeleting={deletingReviewId === review.id}
+                />
+            ))}
+        </div>
     );
 }
 
