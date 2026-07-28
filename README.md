@@ -11,6 +11,7 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 - MERN Stack Architecture
 - TMDb API Integration
 - JWT Authentication
+- Universal Search
 - Personal Library (Favorites & Watchlist)
 - MovieVerse Review System
 - Responsive User Interface
@@ -122,7 +123,16 @@ MongoDB
 
 ---
 
-# Current Features
+# Application Features
+
+MovieVerse allows users to:
+
+- Browse trending and popular movies and TV shows.
+- Search across both movies and TV shows from a single search bar.
+- View detailed information including cast, reviews and similar media.
+- Create, edit and delete personal reviews.
+- Manage favorites and watchlist.
+- Maintain a personal profile with authentication.
 
 ### Media
 
@@ -133,7 +143,9 @@ MongoDB
 - Frontend ↔ Backend Integration
 - TMDb Data Normalization
 - Loading & Error States
-- Search Movies & TV Shows
+- Universal Search
+- Search Suggestions
+- Search Results Page
 
 ### Authentication
 
@@ -172,6 +184,7 @@ MongoDB
 - Register UI
 - Profile Page
 - Library Page
+- Search Suggestions Dropdown
 - Edit Username
 - Change Password
 - Change Avatar
@@ -180,7 +193,6 @@ MongoDB
 
 ### Coming Soon
 
-- Universal Search
 - User Settings
 - UI Polish
 
@@ -232,7 +244,7 @@ GET /api/tv/trending
 GET /api/tv/popular
 GET /api/tv/:tvId
 
-GET /api/search
+GET /api/search?query={searchTerm}
 ```
 
 ---
@@ -274,8 +286,10 @@ GET /api/search
 - [x] Library page
 - [x] Shared Library Context
 - [x] Review UI integration
-- [ ] Universal SearchBar integration
-- [ ] UI polishing
+- [x] Universal Search
+- [x] Search Suggestions
+- [x] Search Results Integration
+- [ ] UI Polishing
 
 ---
 
@@ -407,15 +421,20 @@ GET /api/search
 - Login Prompt
 - Live UI Synchronization
 
+## Sprint 14 – Universal Search
+
+- Search Service
+- Search Results Integration
+- SearchBar Navigation
+- Debounced Search
+- Search Suggestions
+- Search Suggestions Dropdown
+- Search Result Navigation
+- Search UX Improvements
+
 ---
 
 # Roadmap
-
-## Sprint 14 – Universal Search
-
-- Universal Search Bar
-- Search Suggestions
-- Search Result Navigation
 
 ## Sprint 15 – Polish
 
@@ -431,4 +450,4 @@ GET /api/search
 
 🚧 Active Development
 
-Current Progress: ~90% Complete
+Current Progress: ~95% Complete

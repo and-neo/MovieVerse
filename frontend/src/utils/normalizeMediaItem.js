@@ -50,8 +50,15 @@ const TV_GENRES = {
  * @returns {object} Normalized media item.
  */
 
-function normalizeMediaItem(item, mediaType) {
-    const isMovie = mediaType === "movie";
+function normalizeMediaItem(item, mediaType = item.media_type) {
+    const type = mediaType ?? item.media_type;
+
+    // Ignore unsupported TMDb results (e.g. persons)
+    if (!["movie", "tv"].includes(type)) {
+        return null;
+    }
+
+    const isMovie = type === "movie";
     const genreMap = isMovie ? MOVIE_GENRES : TV_GENRES;
 
     const genres = Array.isArray(item.genre_ids)
@@ -60,8 +67,9 @@ function normalizeMediaItem(item, mediaType) {
 
     return {
         id: item.id,
-        type: mediaType,
-        title: isMovie ? item.title : item.name,
+        type,
+
+        title: isMovie ? item.title || "Untitled" : item.name || "Untitled",
 
         posterPath: item.poster_path || null,
 
@@ -72,6 +80,7 @@ function normalizeMediaItem(item, mediaType) {
         releaseDate: isMovie ? item.release_date : item.first_air_date,
 
         voteAverage: item.vote_average ?? 0,
+
         genres,
     };
 }

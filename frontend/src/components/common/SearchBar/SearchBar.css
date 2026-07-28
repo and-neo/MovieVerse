@@ -7,6 +7,7 @@
 .search-form {
     display: flex;
     align-items: center;
+    width: 100%;
 
     background-color: var(--card-color);
 
@@ -38,8 +39,39 @@
     color: white;
 
     transition: background-color var(--transition-speed);
+
+    cursor: pointer;
 }
 
 .search-form button:hover {
     background-color: #1d4ed8;
+}
+
+.search-suggestions-status {
+    margin-top: 0.75rem;
+    color: var(--text-muted-color);
+    text-align: center;
+}
+
+.search-suggestions-error {
+    color: var(--error-color);
+}
+
+.search-suggestions-debug {
+    margin-top: 0.75rem;
+    padding: 1rem;
+    background-color: var(--surface-color);
+    border-radius: 0.5rem;
+}
+
+.search-suggestions-debug p {
+    margin: 0;
+}
+
+.search-suggestions-debug p + p {
+    margin-top: 0.5rem;
+}
+
+.search-bar-wrapper {
+    position: relative;
 }
