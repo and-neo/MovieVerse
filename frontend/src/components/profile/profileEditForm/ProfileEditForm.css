@@ -60,8 +60,15 @@
 }
 
 .profile-form-message {
-    color: var(--error-color);
     font-size: 0.9rem;
+}
+
+.profile-form-message--error {
+    color: var(--error-color);
+}
+
+.profile-form-message--success {
+    color: var(--success-color);
 }
 
 .profile-avatar-editor {

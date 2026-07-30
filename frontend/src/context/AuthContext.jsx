@@ -1,9 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 
 import {
+    deleteUserAccount,
     getCurrentUser,
     loginUser,
     registerUser,
+    updateUserPassword,
+    updateUserProfile,
 } from "../services/authService";
 
 export const AuthContext = createContext();
@@ -95,6 +98,39 @@ const AuthProvider = ({ children }) => {
         initializeAuth();
     }, [token]);
 
+    /**
+     * Updates the authenticated user's profile.
+     */
+
+    const updateProfile = async (profileData) => {
+        const updatedUser = await updateUserProfile(profileData);
+
+        setUser(updatedUser);
+
+        return updatedUser;
+    };
+
+    /**
+     * Updates the authenticated user's password.
+     */
+
+    const changePassword = async (passwordData) => {
+        return updateUserPassword(passwordData);
+    };
+
+    /**
+     * Permanently deletes the authenticated user's account.
+     */
+
+    const deleteAccount = async () => {
+        await deleteUserAccount();
+
+        localStorage.removeItem("token");
+
+        setToken(null);
+        setUser(null);
+    };
+
     const value = {
         user,
         token,
@@ -106,6 +142,9 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         refreshUser,
+        updateProfile,
+        changePassword,
+        deleteAccount,
     };
 
     return (

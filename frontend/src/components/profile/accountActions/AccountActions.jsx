@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../../context/AuthContext";
 
 import "./AccountActions.css";
 
@@ -7,9 +10,14 @@ import "./AccountActions.css";
  */
 
 function AccountActions() {
+    const { deleteAccount } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const [actionMessage, setActionMessage] = useState("");
+    const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
     function handleShowDeleteConfirmation() {
         setShowDeleteConfirmation(true);
@@ -17,15 +25,34 @@ function AccountActions() {
     }
 
     function handleCancelDelete() {
+        if (isDeletingAccount) {
+            return;
+        }
+
         setShowDeleteConfirmation(false);
+        setActionMessage("");
     }
 
-    function handleConfirmDelete() {
-        setActionMessage(
-            "Account deletion will be connected to the backend later.",
-        );
+    async function handleConfirmDelete() {
+        try {
+            setIsDeletingAccount(true);
+            setActionMessage("");
 
-        setShowDeleteConfirmation(false);
+            await deleteAccount();
+
+            navigate("/", {
+                replace: true,
+            });
+        } catch (error) {
+            setActionMessage(
+                error.response?.data?.message ||
+                    "Unable to delete your account.",
+            );
+
+            setShowDeleteConfirmation(false);
+        } finally {
+            setIsDeletingAccount(false);
+        }
     }
 
     return (
@@ -60,7 +87,8 @@ function AccountActions() {
                 {showDeleteConfirmation && (
                     <div className="delete-confirmation">
                         <p className="delete-confirmation-message" role="alert">
-                            Are you sure you want to delete your account?
+                            Are you sure you want to permanently delete your
+                            account? This action cannot be undone.
                         </p>
 
                         <div className="delete-confirmation-actions">
@@ -68,14 +96,18 @@ function AccountActions() {
                                 type="button"
                                 className="btn account-delete-button"
                                 onClick={handleConfirmDelete}
+                                disabled={isDeletingAccount}
                             >
-                                Yes, Delete Account
+                                {isDeletingAccount
+                                    ? "Deleting..."
+                                    : "Yes, Delete Account"}
                             </button>
 
                             <button
                                 type="button"
                                 className="btn account-cancel-delete-button"
                                 onClick={handleCancelDelete}
+                                disabled={isDeletingAccount}
                             >
                                 Cancel
                             </button>
@@ -85,7 +117,7 @@ function AccountActions() {
             </div>
 
             {actionMessage && (
-                <p className="account-action-message" role="status">
+                <p className="account-action-message" role="alert">
                     {actionMessage}
                 </p>
             )}

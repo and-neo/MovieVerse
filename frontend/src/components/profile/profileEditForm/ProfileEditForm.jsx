@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { AuthContext } from "../../../context/AuthContext";
 
 import "./ProfileEditForm.css";
 
@@ -12,6 +14,7 @@ function ProfileEditForm({ user, onCancel, formRef }) {
 
     const [username, setUsername] = useState(user.username);
     const [usernameMessage, setUsernameMessage] = useState("");
+    const [usernameMessageType, setUsernameMessageType] = useState("");
 
     // Password state
 
@@ -22,6 +25,7 @@ function ProfileEditForm({ user, onCancel, formRef }) {
     });
 
     const [passwordMessage, setPasswordMessage] = useState("");
+    const [passwordMessageType, setPasswordMessageType] = useState("");
 
     // Avatar state
 
@@ -32,6 +36,17 @@ function ProfileEditForm({ user, onCancel, formRef }) {
     // Derived values
 
     const userInitial = user.username.charAt(0).toUpperCase();
+
+    // Updating states
+
+    const { updateProfile, changePassword } = useContext(AuthContext);
+
+    const [isUpdatingUsername, setIsUpdatingUsername] = useState(false);
+    const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
+
+    useEffect(() => {
+        setUsername(user.username);
+    }, [user.username]);
 
     // Clean up temporary avatar preview URLs
 
@@ -48,31 +63,50 @@ function ProfileEditForm({ user, onCancel, formRef }) {
     function handleUsernameChange(event) {
         setUsername(event.target.value);
         setUsernameMessage("");
+        setUsernameMessageType("");
     }
 
-    function handleUsernameSubmit(event) {
+    async function handleUsernameSubmit(event) {
         event.preventDefault();
 
         const trimmedUsername = username.trim();
 
         if (!trimmedUsername) {
             setUsernameMessage("Username is required.");
+            setUsernameMessageType("error");
             return;
         }
 
         if (trimmedUsername.length < 3) {
             setUsernameMessage("Username must contain at least 3 characters.");
+            setUsernameMessageType("error");
             return;
         }
 
-        if (trimmedUsername === user.username) {
+        if (trimmedUsername.toLowerCase() === user.username.toLowerCase()) {
             setUsernameMessage("Please enter a different username.");
+            setUsernameMessageType("error");
             return;
         }
 
-        setUsernameMessage(
-            "Username validation passed. Backend update will be added later.",
-        );
+        try {
+            setIsUpdatingUsername(true);
+            setUsernameMessage("");
+
+            await updateProfile({
+                username: trimmedUsername,
+            });
+
+            setUsernameMessage("Username updated successfully.");
+            setUsernameMessageType("success");
+        } catch (error) {
+            setUsernameMessage(
+                error.response?.data?.message || "Unable to update username.",
+            );
+            setUsernameMessageType("error");
+        } finally {
+            setIsUpdatingUsername(false);
+        }
     }
 
     // Password handlers
@@ -86,15 +120,17 @@ function ProfileEditForm({ user, onCancel, formRef }) {
         }));
 
         setPasswordMessage("");
+        setPasswordMessageType("");
     }
 
-    function handlePasswordSubmit(event) {
+    async function handlePasswordSubmit(event) {
         event.preventDefault();
 
         const { currentPassword, newPassword, confirmPassword } = passwordData;
 
         if (!currentPassword || !newPassword || !confirmPassword) {
             setPasswordMessage("All password fields are required.");
+            setPasswordMessageType("error");
             return;
         }
 
@@ -102,6 +138,7 @@ function ProfileEditForm({ user, onCancel, formRef }) {
             setPasswordMessage(
                 "The new password must contain at least 8 characters.",
             );
+            setPasswordMessageType("error");
             return;
         }
 
@@ -109,23 +146,41 @@ function ProfileEditForm({ user, onCancel, formRef }) {
             setPasswordMessage(
                 "The new password must be different from the current password.",
             );
+            setPasswordMessageType("error");
             return;
         }
 
         if (newPassword !== confirmPassword) {
             setPasswordMessage("Passwords do not match.");
+            setPasswordMessageType("error");
             return;
         }
 
-        setPasswordMessage(
-            "Password validation passed. Backend update will be added later.",
-        );
+        try {
+            setIsUpdatingPassword(true);
+            setPasswordMessage("");
 
-        setPasswordData({
-            currentPassword: "",
-            newPassword: "",
-            confirmPassword: "",
-        });
+            const message = await changePassword({
+                currentPassword,
+                newPassword,
+            });
+
+            setPasswordMessage(message || "Password updated successfully.");
+            setPasswordMessageType("success");
+
+            setPasswordData({
+                currentPassword: "",
+                newPassword: "",
+                confirmPassword: "",
+            });
+        } catch (error) {
+            setPasswordMessage(
+                error.response?.data?.message || "Unable to update password.",
+            );
+            setPasswordMessageType("error");
+        } finally {
+            setIsUpdatingPassword(false);
+        }
     }
 
     // Avatar handlers
@@ -213,17 +268,27 @@ function ProfileEditForm({ user, onCancel, formRef }) {
                         value={username}
                         onChange={handleUsernameChange}
                         autoComplete="username"
+                        disabled={isUpdatingUsername}
                     />
                 </div>
 
                 {usernameMessage && (
-                    <p className="profile-form-message" role="status">
+                    <p
+                        className={`profile-form-message profile-form-message--${usernameMessageType}`}
+                        role={
+                            usernameMessageType === "error" ? "alert" : "status"
+                        }
+                    >
                         {usernameMessage}
                     </p>
                 )}
 
-                <button type="submit" className="btn">
-                    Save Username
+                <button
+                    type="submit"
+                    className="btn"
+                    disabled={isUpdatingUsername}
+                >
+                    {isUpdatingUsername ? "Saving..." : "Save Username"}
                 </button>
             </form>
 
@@ -256,6 +321,7 @@ function ProfileEditForm({ user, onCancel, formRef }) {
                             value={passwordData.currentPassword}
                             onChange={handlePasswordChange}
                             autoComplete="current-password"
+                            disabled={isUpdatingPassword}
                         />
                     </div>
 
@@ -296,13 +362,22 @@ function ProfileEditForm({ user, onCancel, formRef }) {
                 </div>
 
                 {passwordMessage && (
-                    <p className="profile-form-message" role="status">
+                    <p
+                        className={`profile-form-message profile-form-message--${passwordMessageType}`}
+                        role={
+                            passwordMessageType === "error" ? "alert" : "status"
+                        }
+                    >
                         {passwordMessage}
                     </p>
                 )}
 
-                <button type="submit" className="btn">
-                    Update Password
+                <button
+                    type="submit"
+                    className="btn"
+                    disabled={isUpdatingPassword}
+                >
+                    {isUpdatingPassword ? "Updating..." : "Update Password"}
                 </button>
             </form>
 

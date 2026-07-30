@@ -43,4 +43,40 @@ const getCurrentUser = async () => {
     return response.data.data.user;
 };
 
+/**
+ * Updates the authenticated user's profile.
+ *
+ * @param {object} profileData - Updated profile fields.
+ * @returns {Promise<object>} Updated user.
+ */
+
+export async function updateUserProfile(profileData) {
+    const response = await api.patch("/auth/profile", profileData);
+
+    return response.data.data.user;
+}
+
+/**
+ * Updates the authenticated user's password.
+ *
+ * @param {object} passwordData - Current and new passwords.
+ * @returns {Promise<string>} Success message.
+ */
+
+export async function updateUserPassword(passwordData) {
+    const response = await api.patch("/auth/password", passwordData);
+
+    return response.data.message;
+}
+
+/**
+ * Deletes the authenticated user's account.
+ *
+ * @returns {Promise<void>}
+ */
+
+export async function deleteUserAccount() {
+    await api.delete("/auth/profile");
+}
+
 export { getCurrentUser, loginUser, registerUser };

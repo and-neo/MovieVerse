@@ -65,8 +65,14 @@
 }
 
 .account-action-message {
-    color: var(--text-secondary);
+    color: var(--error-color);
     font-size: 0.9rem;
+}
+
+.account-delete-button:disabled,
+.account-cancel-delete-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
 }
 
 @media (max-width: 600px) {

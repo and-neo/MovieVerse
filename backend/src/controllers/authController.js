@@ -2,6 +2,20 @@ import User from "../models/User.js";
 import AppError from "../utils/AppError.js";
 import catchAsync from "../utils/catchAsync.js";
 import generateToken from "../utils/generateToken.js";
+import Review from "../models/Review.js";
+
+function formatUserResponse(user) {
+    return {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        avatarUrl: user.avatarUrl,
+        role: user.role,
+        favorites: user.favorites,
+        watchlist: user.watchlist,
+        createdAt: user.createdAt,
+    };
+}
 
 /**
  * Registers a new user and returns an authentication token.
@@ -132,4 +146,145 @@ const getProfile = catchAsync(async (req, res) => {
     });
 });
 
-export { loginUser, registerUser, getProfile };
+/**
+ * Updates the authenticated user's profile information.
+ */
+
+const updateProfile = catchAsync(async (req, res, next) => {
+    const { username } = req.body;
+
+    if (!username || typeof username !== "string") {
+        return next(new AppError("Username is required.", 400));
+    }
+
+    const normalizedUsername = username.trim().toLowerCase();
+
+    if (normalizedUsername.length < 3) {
+        return next(
+            new AppError("Username must contain at least 3 characters.", 400),
+        );
+    }
+
+    if (normalizedUsername === req.user.username) {
+        return next(new AppError("Please enter a different username.", 400));
+    }
+
+    const existingUser = await User.findOne({
+        username: normalizedUsername,
+        _id: { $ne: req.user._id },
+    });
+
+    if (existingUser) {
+        return next(new AppError("Username is already in use.", 409));
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        req.user._id,
+        {
+            username: normalizedUsername,
+        },
+        {
+            new: true,
+            runValidators: true,
+        },
+    );
+
+    if (!updatedUser) {
+        return next(new AppError("User account not found.", 404));
+    }
+
+    res.status(200).json({
+        status: "success",
+        data: {
+            user: formatUserResponse(updatedUser),
+        },
+    });
+});
+
+/**
+ * Updates the authenticated user's password.
+ */
+
+const updatePassword = catchAsync(async (req, res, next) => {
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+        return next(
+            new AppError(
+                "Current password and new password are required.",
+                400,
+            ),
+        );
+    }
+
+    if (newPassword.length < 8) {
+        return next(
+            new AppError(
+                "The new password must contain at least 8 characters.",
+                400,
+            ),
+        );
+    }
+
+    const user = await User.findById(req.user._id).select("+password");
+
+    if (!user) {
+        return next(new AppError("User account not found.", 404));
+    }
+
+    const isCurrentPasswordCorrect =
+        await user.comparePassword(currentPassword);
+
+    if (!isCurrentPasswordCorrect) {
+        return next(new AppError("Current password is incorrect.", 400));
+    }
+
+    const isSamePassword = await user.comparePassword(newPassword);
+
+    if (isSamePassword) {
+        return next(
+            new AppError(
+                "The new password must be different from the current password.",
+                400,
+            ),
+        );
+    }
+
+    user.password = newPassword;
+
+    await user.save();
+
+    res.status(200).json({
+        status: "success",
+        message: "Password updated successfully.",
+    });
+});
+
+/**
+ * Deletes the authenticated user's account and reviews.
+ */
+
+const deleteProfile = catchAsync(async (req, res, next) => {
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+        return next(new AppError("User account not found.", 404));
+    }
+
+    await Review.deleteMany({
+        user: req.user._id,
+    });
+
+    await user.deleteOne();
+
+    res.status(204).send();
+});
+
+export {
+    deleteProfile,
+    getProfile,
+    loginUser,
+    registerUser,
+    updatePassword,
+    updateProfile,
+};

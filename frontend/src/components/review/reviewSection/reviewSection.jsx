@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import "./ReviewSection.css";
@@ -37,6 +37,7 @@ function ReviewSection({ contentType, tmdbId, tmdbReviews = [] }) {
     const [editingReview, setEditingReview] = useState(null);
     const [deletingReviewId, setDeletingReviewId] = useState(null);
     const [actionErrorMessage, setActionErrorMessage] = useState("");
+    const reviewFormRef = useRef(null);
 
     const handleOpenCreateForm = () => {
         setEditingReview(null);
@@ -132,6 +133,17 @@ function ReviewSection({ contentType, tmdbId, tmdbReviews = [] }) {
         () => movieVerseReviews.find((review) => review.isOwner) || null,
         [movieVerseReviews],
     );
+
+    useEffect(() => {
+        if (!isReviewFormOpen || !reviewFormRef.current) {
+            return;
+        }
+
+        reviewFormRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    }, [isReviewFormOpen, editingReview]);
 
     useEffect(() => {
         let isMounted = true;
@@ -230,7 +242,10 @@ function ReviewSection({ contentType, tmdbId, tmdbReviews = [] }) {
                             </Link>
                         </div>
                     ) : isReviewFormOpen ? (
-                        <div className="review-form-wrapper">
+                        <div
+                            ref={reviewFormRef}
+                            className="review-form-wrapper"
+                        >
                             <ReviewForm
                                 mode={editingReview ? "edit" : "create"}
                                 initialData={editingReview}

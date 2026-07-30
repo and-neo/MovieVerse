@@ -120,6 +120,10 @@
     color: var(--error-color);
 }
 
+.review-form-wrapper {
+    scroll-margin-top: 90px;
+}
+
 @media (max-width: 576px) {
     .review-login-prompt {
         align-items: flex-start;

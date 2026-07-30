@@ -50,6 +50,7 @@ body {
     --text-secondary: #9ca3af;
 
     --error-color: #ef4444;
+    --success-color: #22c55e;
     --border-color: #333333;
 
     --surface-color: var(--card-color);
