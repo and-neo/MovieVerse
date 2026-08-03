@@ -1,8 +1,6 @@
 # MovieVerse
 
-MovieVerse is a full-stack web application for discovering movies and TV shows, creating reviews, and managing personal favorites and watchlists.
-
-The application is being developed as part of a Bachelor's dissertation in Computing using the MERN technology stack.
+MovieVerse is a modern full-stack movies and TV shows discovery platform, developed as part of a Bachelor's dissertation. It combines the TMDb API with a custom backend to provide authentication, personal libraries, reviews and search functionality within a responsive MERN architecture.
 
 ---
 
@@ -43,6 +41,93 @@ The application is being developed as part of a Bachelor's dissertation in Compu
 ### External Services
 
 - TMDb API
+
+---
+
+# 2. Requirements
+
+## Requirements
+
+- Node.js
+- npm
+- MongoDB
+- TMDb API Key
+
+---
+
+# Installation
+
+- Clone the repository:
+
+```bash
+git clone https://github.com/and-neo/MovieVerse
+cd MovieVerse
+```
+
+- Install dependencies for both projects.
+
+Backend:
+
+```bash
+cd backend
+npm install
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm install
+```
+
+- Before running the application, create the required environment files.
+
+Backend:
+Create a .env file inside the backend directory based on env.example.
+
+```js
+The following values must be configured:
+MONGODB_URI → MongoDB connection string.
+JWT_SECRET → Secret key used to sign JWT tokens.
+JWT_EXPIRES_IN → JWT expiration time.
+TMDB_API_KEY → Personal TMDb API key.
+TMDB_BASE_URL → TMDb API base URL.
+```
+
+Frontend:
+Create a .env file inside the frontend directory.
+Configure:
+
+```js
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+
+Adjust the URL if the backend is hosted on a different server.
+
+- Running the Application
+
+The frontend and backend must be started separately.
+
+Backend:
+
+```bash
+cd backend
+npm run dev
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm run dev
+```
+
+Open the application in your browser using the URL provided by Vite (typically http://localhost:5173).
+
+**Note**
+This project was developed using the latest versions of the listed technologies at the time of development.
+Depending on your operating system or environment, some package versions may differ.
+If compatibility issues occur, install the latest compatible versions of the required dependencies.
 
 ---
 
@@ -190,10 +275,10 @@ MovieVerse allows users to:
 - Change Avatar
 - Logout
 - Delete Account Confirmation
+- User Account Settings
 
-### Coming Soon
+### Future Improvements
 
-- User Settings
 - UI Polish
 
 ---
@@ -289,6 +374,7 @@ GET /api/search?query={searchTerm}
 - [x] Universal Search
 - [x] Search Suggestions
 - [x] Search Results Integration
+- [x] User Account Settings
 - [ ] UI Polishing
 
 ---
@@ -387,7 +473,7 @@ GET /api/search?query={searchTerm}
 - Data Normalization
 - Loading & Error States
 
-## Sprint 11 -- Authentication Integration
+## Sprint 11 - Authentication Integration
 
 - Auth Context
 - JWT Persistence
@@ -431,6 +517,7 @@ GET /api/search?query={searchTerm}
 - Search Suggestions Dropdown
 - Search Result Navigation
 - Search UX Improvements
+- User Settings
 
 ---
 
@@ -439,7 +526,6 @@ GET /api/search?query={searchTerm}
 ## Sprint 15 – Polish
 
 - UI Polish
-- User Settings
 - Performance Improvements
 - Responsive Improvements
 - Final Refactoring
