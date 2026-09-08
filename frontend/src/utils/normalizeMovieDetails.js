@@ -14,7 +14,7 @@ const TMDB_PROFILE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
 function normalizeMovieDetails(movie) {
     const cast =
-        movie.credits?.cast?.slice(0, 10).map((member) => ({
+        movie.credits?.cast?.slice(0, 8).map((member) => ({
             id: member.id,
             name: member.name,
             character: member.character || "Unknown role",

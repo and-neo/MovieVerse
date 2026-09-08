@@ -13,6 +13,7 @@ import Register from "../pages/Register/Register";
 import SearchResults from "../pages/SearchResults/SearchResults";
 import TVShowDetails from "../pages/TVShowDetails/TVShowDetails";
 import TVShows from "../pages/TVShows/TVShows";
+import About from "../pages/About/About";
 
 /**
  * Main application router.
@@ -33,6 +34,7 @@ function AppRouter() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/search" element={<SearchResults />} />
+                    <Route path="/about" element={<About />} />
 
                     <Route element={<ProtectedRoute />}>
                         <Route path="/profile" element={<Profile />} />

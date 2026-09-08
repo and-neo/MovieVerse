@@ -14,6 +14,7 @@ import "./Profile.css";
 /**
  * Displays the authenticated user's profile.
  */
+
 function Profile() {
     const { user } = useAuth();
 

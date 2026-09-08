@@ -39,11 +39,11 @@ function HomePage() {
                 }
 
                 const normalizedMovies = movieData.results
-                    .slice(0, 12)
+                    .slice(0, 8)
                     .map((movie) => normalizeMediaItem(movie, "movie"));
 
                 const normalizedTvShows = tvData.results
-                    .slice(0, 12)
+                    .slice(0, 8)
                     .map((tvShow) => normalizeMediaItem(tvShow, "tv"));
 
                 setTrendingMovies(normalizedMovies);
