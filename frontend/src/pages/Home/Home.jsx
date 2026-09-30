@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import "./Home.css";
 import "../../styles/utilities.css";
 
-import Hero from "../../components/home/hero/Hero";
-import SearchBar from "../../components/common/searchBar/SearchBar";
-import MediaGrid from "../../components/media/mediaGrid/MediaGrid";
+import Hero from "../../components/home/hero/hero.jsx";
+import SearchBar from "../../components/common/searchBar/SearchBar.jsx";
+import MediaGrid from "../../components/media/mediaGrid/MediaGrid.jsx";
 
-import { getTrendingMovies } from "../../services/movieService";
-import { getTrendingTvShows } from "../../services/tvService";
-import normalizeMediaItem from "../../utils/normalizeMediaItem";
+import { getTrendingMovies } from "../../services/movieService.js";
+import { getTrendingTvShows } from "../../services/tvService.js";
+import normalizeMediaItem from "../../utils/normalizeMediaItem.js";
 
 /**
  * Home page of the application.

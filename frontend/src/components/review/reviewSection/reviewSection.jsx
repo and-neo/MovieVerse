@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
-import "./ReviewSection.css";
+import "./reviewSection.css";
 
-import ReviewForm from "../reviewForm/ReviewForm";
+import ReviewForm from "../reviewForm/reviewForm";
 import ReviewList from "../reviewList/ReviewList";
 
 import {
