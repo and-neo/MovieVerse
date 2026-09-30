@@ -1,4 +1,4 @@
-import LibrarySection from "../../components/library/LibrarySection/librarySection.jsx";
+import LibrarySection from "../../components/library/librarySection/librarySection.jsx";
 import useFavorites from "../../hooks/useFavorites";
 import useWatchlist from "../../hooks/useWatchlist";
 

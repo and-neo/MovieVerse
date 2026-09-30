@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 import "./MovieDetails.css";
 import "../../styles/utilities.css";
 
-import MediaHero from "../../components/media/mediaHero/MediaHero";
-import MediaOverview from "../../components/media/mediaOverview/MediaOverview";
-import CastList from "../../components/cast/castList/CastList";
-import ReviewSection from "../../components/review/reviewSection/ReviewSection";
-import SimilarMedia from "../../components/media/similarMedia/SimilarMedia";
+import MediaHero from "../../components/media/mediaHero/mediaHero.jsx";
+import MediaOverview from "../../components/media/mediaOverview/MediaOverview.jsx";
+import CastList from "../../components/cast/castList/CastList.jsx";
+import ReviewSection from "../../components/review/reviewSection/reviewSection.jsx";
+import SimilarMedia from "../../components/media/similarMedia/SimilarMedia.jsx";
 
 import { getMovieDetails } from "../../services/movieService";
 import normalizeMovieDetails from "../../utils/normalizeMovieDetails";

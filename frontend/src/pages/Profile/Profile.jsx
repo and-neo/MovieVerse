@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import AccountActions from "../../components/profile/AccountActions/AccountActions";
+import AccountActions from "../../components/profile/accountActions/AccountActions";
 import ProfileEditForm from "../../components/profile/ProfileEditForm/ProfileEditForm";
 import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
 import ProfileStats from "../../components/profile/ProfileStats/ProfileStats";
