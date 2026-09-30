@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import "./TVShowDetails.css";
 import "../../styles/utilities.css";
 
-import MediaHero from "../../components/media/mediaHero/MediaHero";
+import MediaHero from "../../components/media/mediaHero/mediaHero";
 import MediaOverview from "../../components/media/mediaOverview/MediaOverview";
 import CastList from "../../components/cast/castList/CastList";
-import ReviewSection from "../../components/review/reviewSection/ReviewSection";
+import ReviewSection from "../../components/review/reviewSection/reviewSection";
 import SimilarMedia from "../../components/media/similarMedia/SimilarMedia";
 
 import { getTvShowDetails } from "../../services/tvService";

@@ -1,4 +1,4 @@
-import "./MediaHero.css";
+import "./mediaHero.css";
 
 import LibraryActions from "../libraryActions/LibraryActions";
 

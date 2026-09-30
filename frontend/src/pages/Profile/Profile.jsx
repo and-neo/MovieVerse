@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 import AccountActions from "../../components/profile/accountActions/AccountActions";
-import ProfileEditForm from "../../components/profile/ProfileEditForm/ProfileEditForm";
-import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
-import ProfileStats from "../../components/profile/ProfileStats/ProfileStats";
+import ProfileEditForm from "../../components/profile/profileEditForm/ProfileEditForm";
+import ProfileHeader from "../../components/profile/profileHeader/ProfileHeader";
+import ProfileStats from "../../components/profile/profileStats/ProfileStats";
 
 import useAuth from "../../hooks/useAuth";
 import useFavorites from "../../hooks/useFavorites";

@@ -1,6 +1,6 @@
-import LibraryCard from "../LibraryCard/LibraryCard";
+import LibraryCard from "../libraryCard/libraryCard";
 
-import "./LibrarySection.css";
+import "./librarySection.css";
 
 /**
  * Displays a collection of stored library items.

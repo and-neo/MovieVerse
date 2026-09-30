@@ -1,4 +1,4 @@
-import "./Hero.css";
+import "./hero.css";
 
 /**
  * Hero section displayed on the home page.

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import "./ReviewForm.css";
+import "./reviewForm.css";
 
 /**
  * Displays the form used to create or edit a MovieVerse review.

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import "./LibraryCard.css";
+import "./libraryCard.css";
 
 /**
  * Displays a stored library item and links to its details page.
