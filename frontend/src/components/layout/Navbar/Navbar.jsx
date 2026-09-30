@@ -23,7 +23,14 @@ function Navbar() {
         <header className="navbar">
             <div className="container navbar-container">
                 <div className="navbar-logo">
-                    <Link to="/">🎬 MovieVerse</Link>
+                    <Link to="/">
+                        <img
+                            src="/mv-pop.png"
+                            alt="MovieVerse"
+                            className="navbar-logo-image"
+                        />
+                        <span>MovieVerse</span>
+                    </Link>
                 </div>
 
                 <nav className="navbar-links">

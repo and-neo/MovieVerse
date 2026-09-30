@@ -54,3 +54,15 @@
 .navbar-logout:hover {
     color: var(--primary-color);
 }
+
+.navbar-logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-logo-image {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
