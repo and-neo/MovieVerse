@@ -5,6 +5,7 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import connectDatabase from "./config/database.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import notFoundMiddleware from "./middleware/notFoundMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -40,6 +41,16 @@ app.get("/api/health", (req, res) => {
         status: "success",
         message: "MovieVerse API is running.",
     });
+});
+
+// Ensure MongoDB is connected
+app.use(async (req, res, next) => {
+    try {
+        await connectDatabase();
+        next();
+    } catch (error) {
+        next(error);
+    }
 });
 
 // API routes

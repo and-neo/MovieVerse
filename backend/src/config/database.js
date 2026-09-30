@@ -2,23 +2,28 @@ import mongoose from "mongoose";
 
 /**
  * Connects the application to MongoDB.
+ * Reuses an existing connection when available.
  */
-
 async function connectDatabase() {
-    try {
-        if (!process.env.MONGODB_URI) {
-            throw new Error(
-                "MONGODB_URI is not defined in the environment variables.",
-            );
-        }
+    if (!process.env.MONGODB_URI) {
+        throw new Error(
+            "MONGODB_URI is not defined in the environment variables.",
+        );
+    }
 
+    if (mongoose.connection.readyState === 1) {
+        return mongoose.connection;
+    }
+
+    try {
         const connection = await mongoose.connect(process.env.MONGODB_URI);
 
         console.log(`MongoDB connected: ${connection.connection.host}`);
+
+        return connection;
     } catch (error) {
         console.error(`MongoDB connection failed: ${error.message}`);
-
-        process.exit(1);
+        throw error;
     }
 }
 
