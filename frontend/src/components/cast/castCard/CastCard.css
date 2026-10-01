@@ -39,3 +39,17 @@
     text-align: center;
     font-weight: 700;
 }
+
+@media (max-width: 600px) {
+    .cast-card-content {
+        padding: 0.6rem;
+    }
+
+    .cast-card-name {
+        font-size: 0.9rem;
+    }
+
+    .cast-card-character {
+        font-size: 0.8rem;
+    }
+}
