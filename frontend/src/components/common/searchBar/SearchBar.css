@@ -18,28 +18,20 @@
 
 .search-form input {
     flex: 1;
-
     padding: 1rem;
-
     border: none;
     outline: none;
-
     background: transparent;
-
     color: var(--text-color);
-
     font-size: 1rem;
 }
 
 .search-form button {
+    border: none;
     padding: 1rem 1.5rem;
-
     background-color: var(--primary-color);
-
     color: white;
-
     transition: background-color var(--transition-speed);
-
     cursor: pointer;
 }
 
@@ -74,4 +66,36 @@
 
 .search-bar-wrapper {
     position: relative;
+}
+
+@media (max-width: 600px) {
+    .search-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .search-form input {
+        min-width: 0;
+        padding: 0.75rem;
+
+        font-size: 0.9rem;
+    }
+
+    .search-form button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        width: 48px;
+        height: 44px;
+        padding: 0;
+    }
+
+    .search-form button svg {
+        width: 18px;
+        height: 18px;
+
+        flex-shrink: 0;
+    }
 }
